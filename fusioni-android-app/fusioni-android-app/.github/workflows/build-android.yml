@@ -20,15 +20,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install NPM Dependencies
-        run: |
-          if [ -f "package-lock.json" ]; then
-            npm ci
-          else
-            npm install
-          fi
-
+        run: npm ci
 
       - name: Sync Capacitor Android Project
         run: npx cap sync android
