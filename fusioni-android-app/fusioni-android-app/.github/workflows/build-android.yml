@@ -29,7 +29,6 @@ jobs:
             npm install
           fi
 
-
       - name: Sync Capacitor Android Project
         run: npx cap sync android
 
@@ -40,46 +39,17 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Decode Release Keystore (Optional for Signed Release)
-        if: env.KEYSTORE_BASE64 != ''
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        run: |
-          mkdir -p android/app/build
-          echo "$KEYSTORE_BASE64" | base64 --decode > android/app/build/keystore.jks
-
       - name: Make Gradle Wrapper Executable
         run: chmod +x android/gradlew
 
-      - name: Build Debug & Release APK
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      - name: Build Android Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug
-          if [ -n "$KEYSTORE_BASE64" ]; then
-            ./gradlew assembleRelease bundleRelease
-          fi
+          ./gradlew assembleDebug --stacktrace
 
-      - name: Upload Debug APK
+      - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: fusioni-menu-debug-apk
           path: android/app/build/outputs/apk/debug/*.apk
           retention-days: 14
-
-      - name: Upload Release Artifacts (APK & AAB)
-        if: env.KEYSTORE_BASE64 != ''
-        uses: actions/upload-artifact@v4
-        with:
-          name: fusioni-menu-release-bundles
-          path: |
-            android/app/build/outputs/apk/release/*.apk
-            android/app/build/outputs/bundle/release/*.aab
-          retention-days: 30

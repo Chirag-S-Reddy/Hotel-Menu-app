@@ -20,14 +20,15 @@
         if (App) {
             App.addListener('backButton', ({ canGoBack }) => {
                 // 1. Check if any modal or drawer is open
-                const qrModal = document.getElementById('qrModal');
+                const socialsModal = document.getElementById('socialsModal');
                 const resModal = document.getElementById('reservationModal');
                 const cartDrawer = document.getElementById('cartDrawer');
 
-                if (qrModal && !qrModal.classList.contains('hidden')) {
-                    qrModal.classList.add('hidden');
+                if (socialsModal && !socialsModal.classList.contains('hidden')) {
+                    socialsModal.classList.add('hidden');
                     return;
                 }
+
                 if (resModal && !resModal.classList.contains('hidden')) {
                     resModal.classList.add('hidden');
                     return;

@@ -1,6 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Fusioni</string>
-    <string name="title_activity_main">Fusioni</string>
+    <string name="app_name">Fusioni Digital Menu</string>
+    <string name="title_activity_main">Fusioni Digital Menu</string>
     <string name="package_name">com.fusioni.digitalmenu</string>
-    <string name="custom_url_scheme">fusioni</string>
+    <string name="custom_url_scheme">com.fusioni.digitalmenu</string>
 </resources>
