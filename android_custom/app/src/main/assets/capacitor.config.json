@@ -1,0 +1,30 @@
+{
+	"appId": "com.fusioni.digitalmenu",
+	"appName": "Fusioni Digital Menu",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"server": {
+		"androidScheme": "https",
+		"allowNavigation": [
+			"*.unsplash.com",
+			"*.cloudflare.com",
+			"cdnjs.cloudflare.com",
+			"cdn.tailwindcss.com",
+			"fonts.googleapis.com",
+			"fonts.gstatic.com"
+		]
+	},
+	"plugins": {
+		"CapacitorCookies": {
+			"enabled": true
+		},
+		"CapacitorHttp": {
+			"enabled": true
+		}
+	},
+	"android": {
+		"allowMixedContent": true,
+		"captureInput": true,
+		"webContentsDebuggingEnabled": false
+	}
+}
