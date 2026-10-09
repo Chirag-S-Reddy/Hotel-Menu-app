@@ -4,639 +4,1722 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Fusioni | An Italian-Indian Culinary Canvas</title>
-
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS with Custom CDN Config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        terracotta: '#C85A32',
-                        emeraldLeaf: '#1B4D3E',
-                        parchment: '#FDFBF7',
-                        agedGold: '#D4AF37',
-                        charcoal: '#222222',
-                        goldHover: '#B5922A'
+                        terracotta: {
+                            DEFAULT: '#C85A32',
+                            hover: '#A94622',
+                            light: '#F8ECE7'
+                        },
+                        emeraldRich: {
+                            DEFAULT: '#1B4D3E',
+                            dark: '#113329',
+                            light: '#2D6E5A'
+                        },
+                        parchment: {
+                            DEFAULT: '#FDFBF7',
+                            dark: '#F4EFE6',
+                            accent: '#EBE2D3'
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            hover: '#B59226',
+                            light: '#F4E8C1'
+                        },
+                        charcoal: {
+                            DEFAULT: '#222222',
+                            muted: '#4A4A4A',
+                            soft: '#1A1A1A'
+                        }
                     },
                     fontFamily: {
-                        serif: ['Cormorant Garamond', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        playfair: ['"Playfair Display"', 'serif'],
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'parchment-pattern': "radial-gradient(#d4af3715 1px, transparent 0)",
+                    },
+                    boxShadow: {
+                        'luxury': '0 20px 40px -15px rgba(27, 77, 62, 0.08), 0 0 15px rgba(212, 175, 55, 0.15)',
+                        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.35)',
                     }
                 }
             }
         }
     </script>
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
         body {
+            background-color: #FDFBF7;
+            color: #222222;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
         }
-        .parchment-texture {
-            background-color: #FDFBF7;
-            background-image: 
-                radial-gradient(rgba(212, 175, 55, 0.05) 0.4px, transparent 0.4px), 
-                radial-gradient(rgba(212, 175, 55, 0.05) 0.4px, #FDFBF7 0.4px);
-            background-size: 16px 16px;
-            background-position: 0 0, 8px 8px;
-        }
 
-        .gold-border-glow {
-            box-shadow: 0 0 0 1px #D4AF37, 0 10px 25px -5px rgba(212, 175, 55, 0.15);
+        .texture-overlay {
+            background-image: radial-gradient(#1B4D3E08 1px, transparent 0);
+            background-size: 24px 24px;
         }
 
         .gold-gradient-text {
-            background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #B5922A 100%);
-            background-clip: text;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFF3B0 50%, #B59226 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #D4AF37, #F4E8C1, #D4AF37) 1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4EFE6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C85A32;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1B4D3E;
         }
 
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
-
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .glass-card {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .glass-dark {
+            background: rgba(27, 77, 62, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
     </style>
 </head>
-<body class="bg-parchment text-charcoal font-sans antialiased selection:bg-terracotta selection:text-white parchment-texture">
+<body class="texture-overlay relative antialiased selection:bg-terracotta selection:text-white">
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 bg-parchment/95 backdrop-blur-md border-b border-agedGold/20 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3">
-                <span class="font-serif text-3xl font-bold tracking-wider text-emeraldLeaf">FUSIONI</span>
-                <span class="hidden sm:inline-block h-4 w-[1px] bg-agedGold/50"></span>
-                <span class="hidden sm:inline-block font-serif text-xs italic tracking-widest text-terracotta uppercase">Culinary Canvas</span>
-            </a>
+    <!-- Announcement Bar -->
+    <div class="bg-emeraldRich text-parchment py-2 px-4 text-center text-xs tracking-widest uppercase font-medium border-b border-gold/20 flex justify-between items-center z-50 relative">
+        <div class="hidden sm:flex items-center space-x-2 text-gold">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="text-parchment/90">Via Della Spiga meets Connaught Place • Milan & New Delhi</span>
+        </div>
+        <div class="mx-auto sm:mx-0 flex items-center space-x-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>Michelin Select 2026 • Private Dining & Chef's Table Reservations Open</span>
+        </div>
+        <a href="#reservation" class="hidden md:inline-flex items-center text-gold hover:text-white transition-colors">
+            <span>Book Chef's Counter</span>
+            <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+        </a>
+    </div>
 
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide uppercase">
-                <a href="#about" class="hover:text-terracotta transition-colors">Our Story</a>
-                <a href="#menu" class="hover:text-terracotta transition-colors">Menu</a>
-                <a href="#philosophy" class="hover:text-terracotta transition-colors">Philosophy</a>
-                <a href="#contact" class="hover:text-terracotta transition-colors">Contact</a>
-            </nav>
+    <!-- Navigation Bar -->
+    <header id="main-header" class="sticky top-0 z-40 transition-all duration-300 bg-parchment/90 backdrop-blur-md border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#hero" class="flex items-center group">
+                    <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center bg-emeraldRich text-gold font-playfair font-bold text-xl transition-transform duration-300 group-hover:rotate-45">
+                        F
+                    </div>
+                    <div class="ml-3">
+                        <span class="font-playfair text-2xl font-bold tracking-tight text-emeraldRich block leading-none">FUSIONI</span>
+                        <span class="text-[9px] tracking-[0.25em] uppercase text-terracotta font-semibold">Italian-Indian Canvas</span>
+                    </div>
+                </a>
 
-            <div class="flex items-center space-x-3 sm:space-x-4">
-                <button onclick="openModal('socialsModal')" class="p-2 sm:px-3 sm:py-2 border border-agedGold/40 text-emeraldLeaf rounded-sm hover:border-agedGold hover:bg-agedGold/10 transition-all flex items-center space-x-2 text-xs font-semibold tracking-wider uppercase" aria-label="Social Channels">
-                    <i class="fa-solid fa-share-nodes text-sm text-terracotta"></i>
-                    <span class="hidden sm:inline">Follow Us</span>
-                </button>
-                <button onclick="openModal('reservationModal')" class="bg-terracotta hover:bg-emeraldLeaf text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-sm text-xs font-bold tracking-widest uppercase transition-colors shadow-md">
-                    Reserve
-                </button>
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                    <a href="#hero" class="text-charcoal hover:text-terracotta transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gold hover:after:w-full after:transition-all">Home</a>
+                    <a href="#philosophy" class="text-charcoal hover:text-terracotta transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gold hover:after:w-full after:transition-all">Philosophy</a>
+                    <a href="#menu" class="text-charcoal hover:text-terracotta transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gold hover:after:w-full after:transition-all">Culinary Canvas</a>
+                    <a href="#tasting-experience" class="text-charcoal hover:text-terracotta transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gold hover:after:w-full after:transition-all">Chef's Tasting</a>
+                    <a href="#social-showcase" class="text-charcoal hover:text-terracotta transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gold hover:after:w-full after:transition-all">Socials</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden sm:flex items-center space-x-4">
+                    <!-- Social Modal Button -->
+                    <button onclick="openSocialsModal()" class="p-2.5 text-emeraldRich hover:text-terracotta transition-colors rounded-full hover:bg-parchment-dark border border-gold/30 flex items-center space-x-1.5 px-3 text-xs font-semibold uppercase tracking-wider" aria-label="Socials">
+                        <i class="fa-solid fa-share-nodes text-sm text-terracotta"></i>
+                        <span>Socials</span>
+                    </button>
+
+                    <!-- Dynamic Pre-order / Wishlist Badge Button -->
+                    <button id="open-preorder-btn" class="relative p-2.5 text-emeraldRich hover:text-terracotta transition-colors rounded-full hover:bg-parchment-dark" aria-label="View Selection">
+                        <i class="fa-solid fa-utensils text-lg"></i>
+                        <span id="preorder-count" class="absolute top-0 right-0 w-5 h-5 bg-terracotta text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-parchment">0</span>
+                    </button>
+                    
+                    <a href="#reservation" class="bg-terracotta hover:bg-terracotta-hover text-white text-xs uppercase tracking-widest font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 border border-gold/30">
+                        Reserve Table
+                    </a>
+                </div>
+
+                <!-- Mobile menu toggle -->
+                <div class="flex items-center md:hidden space-x-3">
+                    <button onclick="openSocialsModal()" class="p-2 text-emeraldRich hover:text-terracotta" aria-label="Socials">
+                        <i class="fa-solid fa-share-nodes text-lg"></i>
+                    </button>
+                    <button id="mobile-preorder-icon" class="p-2 text-emeraldRich relative" aria-label="View Selection">
+                        <i class="fa-solid fa-utensils text-lg"></i>
+                        <span id="mobile-preorder-count" class="absolute -top-1 -right-1 w-4 h-4 bg-terracotta text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 text-emeraldRich focus:outline-none" aria-label="Toggle Navigation">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
             </div>
+        </div>
 
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-parchment border-b border-gold/20 px-6 py-6 space-y-4">
+            <a href="#hero" onclick="closeMobileMenu()" class="block text-lg font-cormorant font-semibold text-emeraldRich hover:text-terracotta">Home</a>
+            <a href="#philosophy" onclick="closeMobileMenu()" class="block text-lg font-cormorant font-semibold text-emeraldRich hover:text-terracotta">Culinary Philosophy</a>
+            <a href="#menu" onclick="closeMobileMenu()" class="block text-lg font-cormorant font-semibold text-emeraldRich hover:text-terracotta">The Menu</a>
+            <a href="#tasting-experience" onclick="closeMobileMenu()" class="block text-lg font-cormorant font-semibold text-emeraldRich hover:text-terracotta">Chef's Tasting</a>
+            <a href="#social-showcase" onclick="closeMobileMenu()" class="block text-lg font-cormorant font-semibold text-emeraldRich hover:text-terracotta">Social Highlights</a>
+            <a href="#reservation" onclick="closeMobileMenu()" class="block text-center bg-terracotta text-white py-3 rounded-full font-semibold uppercase tracking-wider text-xs">Reserve a Table</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[calc(100vh-5rem)] flex items-center justify-center bg-emeraldLeaf text-parchment overflow-hidden py-20">
-        <div class="absolute inset-0 z-0 opacity-25">
-            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80" alt="Fine dining spread background" class="w-full h-full object-cover">
+    <section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-charcoal text-parchment py-16">
+        <!-- Background Carousel Images -->
+        <div class="absolute inset-0 z-0">
+            <div id="hero-bg-1" class="hero-bg absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100 scale-105 transform transition-transform duration-[10000ms]" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=2000&q=80');"></div>
+            <div id="hero-bg-2" class="hero-bg absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 scale-105 transform transition-transform duration-[10000ms]" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=80');"></div>
+            <div id="hero-bg-3" class="hero-bg absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 scale-105 transform transition-transform duration-[10000ms]" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=2000&q=80');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/40"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-charcoal/40 to-charcoal/90"></div>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-emeraldLeaf via-emeraldLeaf/80 to-transparent"></div>
 
-        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-8">
-            <div class="inline-flex items-center space-x-2 border-b border-agedGold/40 pb-2">
-                <span class="text-agedGold uppercase text-xs tracking-[0.3em] font-semibold">Fine Dining Synergy</span>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            <div class="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full border border-gold/40 bg-emeraldRich/40 backdrop-blur-md">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                <span class="text-xs uppercase tracking-[0.3em] font-medium text-gold">Where Old World Tradition Meets Royal Spice Route</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
             </div>
-            
-            <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight leading-tight">
-                Where Old World Tradition<br/>
-                <span class="italic font-serif gold-gradient-text">Meets Royal Spice Route</span>
+
+            <h1 class="font-playfair text-4xl sm:text-6xl md:text-7xl font-bold leading-tight text-parchment tracking-tight">
+                An Artisanal Symphony of <br>
+                <span class="font-cormorant italic font-normal text-terracotta">Tuscan Stone</span> & <span class="font-cormorant italic font-normal text-gold">Mughlai Clay</span>
             </h1>
 
-            <p class="max-w-2xl mx-auto text-parchment/80 text-base sm:text-lg font-light leading-relaxed">
-                Experience an unprecedented harmony of handmade Italian pasta crafts infused with the vibrant aromatics of India's royal culinary heritage.
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-parchment/80 font-light leading-relaxed">
+                Experience the harmony of hand-rolled tagliatelle infused with Kashmiri saffron, wood-fired tandoori burrata, and truffle-scented Dal Makhani risotto crafted by Master Chefs.
             </p>
 
-            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                <a href="#menu" class="w-full sm:w-auto bg-agedGold hover:bg-goldHover text-emeraldLeaf px-8 py-3.5 rounded-sm text-xs font-bold tracking-[0.2em] uppercase transition-all shadow-lg hover:shadow-agedGold/20">
-                    Explore Menu
+            <!-- Hero Featured Dish Badge Carousel -->
+            <div id="hero-dish-card" onclick="openDishModal('item-1')" class="glass-card max-w-lg mx-auto p-4 rounded-2xl border border-gold/30 text-left flex items-center space-x-4 shadow-luxury hover:border-gold transition-all cursor-pointer">
+                <img id="hero-dish-img" src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=300&q=80" alt="Butter Chicken Lasagna" class="w-20 h-20 rounded-xl object-cover border border-gold/40">
+                <div class="flex-1 min-w-0">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-terracotta bg-terracotta-light px-2 py-0.5 rounded">Signature Dish</span>
+                    <h4 id="hero-dish-title" class="font-playfair font-bold text-lg text-emeraldRich truncate mt-1">Butter Chicken Lasagna Signature</h4>
+                    <p id="hero-dish-sub" class="text-xs text-charcoal-muted line-clamp-1">Lasagna al Ragù di Pollo al Burro • Slow-baked in Tuscan Wood Oven</p>
+                </div>
+                <div class="text-right pr-2">
+                    <span id="hero-dish-price" class="font-playfair font-bold text-lg text-emeraldRich">$38</span>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="#menu" class="w-full sm:w-auto bg-terracotta hover:bg-terracotta-hover text-parchment font-semibold px-8 py-4 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-luxury hover:scale-105 flex items-center justify-center space-x-2 border border-gold/30">
+                    <span>Explore Culinary Canvas</span>
+                    <i class="fa-solid fa-arrow-down text-xs ml-1"></i>
                 </a>
-                <button onclick="openModal('reservationModal')" class="w-full sm:w-auto border border-parchment/40 hover:border-agedGold text-parchment hover:text-agedGold px-8 py-3.5 rounded-sm text-xs font-bold tracking-[0.2em] uppercase transition-all">
-                    Reserve A Table
-                </button>
+                <a href="#reservation" class="w-full sm:w-auto bg-emeraldRich/80 hover:bg-emeraldRich text-gold border border-gold hover:border-gold-hover font-semibold px-8 py-4 rounded-full text-xs uppercase tracking-widest transition-all duration-300 backdrop-blur-md flex items-center justify-center space-x-2">
+                    <i class="fa-regular fa-calendar-check text-sm"></i>
+                    <span>Reserve Your Table</span>
+                </a>
+            </div>
+
+            <!-- Carousel Controls Indicator -->
+            <div class="flex justify-center items-center space-x-2 pt-6">
+                <button onclick="setHeroSlide(0)" class="hero-dot w-8 h-1.5 rounded-full bg-gold transition-all duration-300" aria-label="Slide 1"></button>
+                <button onclick="setHeroSlide(1)" class="hero-dot w-2 h-1.5 rounded-full bg-parchment/40 hover:bg-gold transition-all duration-300" aria-label="Slide 2"></button>
+                <button onclick="setHeroSlide(2)" class="hero-dot w-2 h-1.5 rounded-full bg-parchment/40 hover:bg-gold transition-all duration-300" aria-label="Slide 3"></button>
             </div>
         </div>
     </section>
 
-    <!-- Brand Philosophy / Story -->
-    <section id="about" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-agedGold/20">
-        <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div class="space-y-6">
-                <span class="text-terracotta text-xs font-bold uppercase tracking-[0.25em]">Our Heritage</span>
-                <h2 class="font-serif text-4xl sm:text-5xl text-emeraldLeaf font-bold leading-tight">
-                    An Unstudied Dialogue Between Rome & Rajasthan
-                </h2>
-                <p class="text-charcoal/80 leading-relaxed">
-                    Founded by Chef Matteo Rossi and Chef Vikramaditya Singh, <strong>Fusioni</strong> represents a deliberate convergence of two rich culinary traditions. We apply classical Italian techniques to the complex spice profiles of India's historic trade routes.
+    <!-- Brand Story & Culinary Philosophy -->
+    <section id="philosophy" class="py-24 relative overflow-hidden bg-parchment-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-xs font-semibold text-terracotta uppercase tracking-[0.25em]">Dual Heritage • Single Masterpiece</span>
+                <h2 class="font-playfair text-3xl sm:text-5xl font-bold text-emeraldRich">The Fusioni Alchemy</h2>
+                <div class="w-24 h-0.5 bg-gold mx-auto"></div>
+                <p class="text-charcoal-muted text-base leading-relaxed">
+                    Italian cuisine honors simplicity, letting top-tier ingredients sing through slow reduction and hand craftsmanship. Indian royal kitchens master the geometry of spice, layer by delicate layer. At Fusioni, these traditions do not collide—they converse.
                 </p>
-                <div class="grid grid-cols-2 gap-6 pt-4 border-t border-agedGold/30">
-                    <div>
-                        <h4 class="font-serif text-2xl text-emeraldLeaf font-bold">Stone & Clay</h4>
-                        <p class="text-xs text-charcoal/70 mt-1">Wood-fired Neapolitan ovens alongside traditional Indian tandoors.</p>
+            </div>
+
+            <!-- Split View Interactive Canvas -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Italian Technique Card -->
+                <div class="relative group rounded-3xl overflow-hidden shadow-2xl bg-parchment border border-gold/30 p-8 sm:p-10 transition-transform duration-500 hover:-translate-y-2">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emeraldRich/5 rounded-bl-full -z-0"></div>
+                    <div class="relative z-10 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-4xl text-emeraldRich font-cormorant italic">01. Wood-Fired Stone</span>
+                            <span class="p-3 bg-emeraldRich/10 rounded-2xl text-emeraldRich">
+                                <i class="fa-solid fa-fire-burner text-2xl"></i>
+                            </span>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-emeraldRich">Forged in Tuscan Clay & Olive Wood</h3>
+                        <p class="text-sm text-charcoal-muted leading-relaxed">
+                            Our 850°F Vesuvian volcanic stone oven produces smoky leopard spots on sourdough naan pizza bases, blistered heirloom tomatoes, and slow-braised osso buco spiced with green cardamom and saffron soot.
+                        </p>
+                        <ul class="space-y-2 text-xs font-medium text-emeraldRich">
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-check text-gold"></i>
+                                <span>Double Zero Flour fermentations paired with Atta grains</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-check text-gold"></i>
+                                <span>Liguria extra virgin olive oil infused with roasted cumin</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-check text-gold"></i>
+                                <span>24-Hour Parmigiano-Reggiano broths with star anise</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div>
-                        <h4 class="font-serif text-2xl text-terracotta font-bold">100% Artisanal</h4>
-                        <p class="text-xs text-charcoal/70 mt-1">Fresh daily handmade pasta crafted with semolina and organic Indian grains.</p>
+                </div>
+
+                <!-- Right: Indian Technique Card -->
+                <div class="relative group rounded-3xl overflow-hidden shadow-2xl bg-emeraldRich text-parchment border border-gold/40 p-8 sm:p-10 transition-transform duration-500 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-gold/10 rounded-tr-full -z-0"></div>
+                    <div class="relative z-10 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-4xl text-gold font-cormorant italic">02. Clay Tandoor</span>
+                            <span class="p-3 bg-gold/20 rounded-2xl text-gold">
+                                <i class="fa-solid fa-pepper-hot text-2xl"></i>
+                            </span>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-gold">The Geometry of Dum & Tandoor</h3>
+                        <p class="text-sm text-parchment/80 leading-relaxed">
+                            Traditional copper handis sealed with sourdough pastry create slow dum pressure. Italian carnaroli rice absorbs the essence of star anise, black cardamom, and aged Barolo wine for an unprecedented risotto-biryani hybrid.
+                        </p>
+                        <ul class="space-y-2 text-xs font-medium text-gold">
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-star text-terracotta"></i>
+                                <span>Peshawari garam masala tempered in cultured ghee</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-star text-terracotta"></i>
+                                <span>Smoked Kashmiri chilies paired with San Marzano tomatoes</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-star text-terracotta"></i>
+                                <span>Fresh buffalo mozzarella smoked over cinnamon bark</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="relative">
-                <div class="aspect-[4/5] bg-emeraldLeaf rounded-sm overflow-hidden gold-border-glow">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Plated Gourmet Fusion Dish" class="w-full h-full object-cover">
+            <!-- Interactive Flavor Canvas Showcase Bar -->
+            <div class="mt-16 bg-parchment rounded-2xl p-6 border border-gold/30 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-terracotta/10 text-terracotta flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-playfair font-bold text-lg text-emeraldRich">Curious about flavor synergy?</h4>
+                        <p class="text-xs text-charcoal-muted">Select an Italian base component to see its Indian spice counterpart.</p>
+                    </div>
                 </div>
-                <div class="absolute -bottom-6 -left-6 bg-parchment p-6 border border-agedGold/40 hidden sm:block max-w-xs shadow-xl">
-                    <p class="font-serif italic text-emeraldLeaf text-lg">"Cooking is a universal language; spice is its finest inflection."</p>
+                
+                <div class="flex flex-wrap gap-2 justify-center" id="synergy-pills">
+                    <button onclick="showSynergy('risotto', this)" class="synergy-btn active px-4 py-2 rounded-full text-xs font-semibold bg-emeraldRich text-gold border border-gold">
+                        Carnaroli Risotto
+                    </button>
+                    <button onclick="showSynergy('ravioli', this)" class="synergy-btn px-4 py-2 rounded-full text-xs font-semibold bg-parchment-dark text-charcoal hover:bg-gold/20 border border-gold/20">
+                        Handmade Ravioli
+                    </button>
+                    <button onclick="showSynergy('tiramisu', this)" class="synergy-btn px-4 py-2 rounded-full text-xs font-semibold bg-parchment-dark text-charcoal hover:bg-gold/20 border border-gold/20">
+                        Mascarpone Tiramisu
+                    </button>
+                    <button onclick="showSynergy('neapolitan', this)" class="synergy-btn px-4 py-2 rounded-full text-xs font-semibold bg-parchment-dark text-charcoal hover:bg-gold/20 border border-gold/20">
+                        Wood-fired Dough
+                    </button>
                 </div>
+            </div>
+
+            <!-- Dynamic Synergy Display Result Box -->
+            <div id="synergy-result-box" class="mt-4 p-5 bg-emeraldRich/5 rounded-xl border border-gold/20 text-center transition-all duration-300">
+                <p class="text-sm font-medium text-emeraldRich">
+                    <span class="font-bold text-terracotta" id="syn-title">Carnaroli Risotto</span> 
+                    <i class="fa-solid fa-arrows-rotate mx-2 text-gold"></i> 
+                    <span id="syn-desc">Infused with 24-hr Truffled Dal Makhani stock, tempered with royal black cumin & brown butter ghee.</span>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Interactive Menu Section -->
-    <section id="menu" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
-            <span class="text-terracotta text-xs font-bold uppercase tracking-[0.25em]">Epicurean Selections</span>
-            <h2 class="font-serif text-4xl sm:text-5xl text-emeraldLeaf font-bold">The Seasonal Menu</h2>
-            <p class="text-charcoal/70 text-sm">Every dish tells a dual narrative of origin, technique, and elevated flavor.</p>
-        </div>
-
-        <!-- Controls Container: Categories & Search -->
-        <div class="space-y-6 mb-12">
-            <!-- Category Tabs (Desktop & Mobile Swipeable) -->
-            <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-2 border-b border-agedGold/20" id="categoryContainer">
-                <!-- JS Populated -->
-            </div>
-
-            <!-- Search Bar & Dietary Filter Toggles -->
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4 bg-emeraldLeaf/5 p-4 rounded-sm border border-agedGold/20">
-                <div class="relative w-full md:w-80">
-                    <input type="text" id="searchInput" placeholder="Search dish, ingredient..." class="w-full bg-parchment pl-10 pr-4 py-2 border border-agedGold/30 rounded-sm text-sm focus:outline-none focus:border-terracotta transition-colors">
-                    <svg class="w-4 h-4 absolute left-3 top-3 text-charcoal/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </div>
-
-                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto" id="dietaryFilters">
-                    <!-- JS Populated Dietary Toggles -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Menu Cards Grid -->
-        <div id="menuGrid" class="grid md:grid-cols-2 gap-8">
-            <!-- JS Dynamic Rendering -->
-        </div>
-    </section>
-
-    <!-- Culinary Technique Comparison -->
-    <section id="philosophy" class="py-20 bg-emeraldLeaf text-parchment my-12">
+    <section id="menu" class="py-24 bg-parchment relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-agedGold text-xs font-bold uppercase tracking-[0.25em]">Technique Synergy</span>
-                <h2 class="font-serif text-4xl text-parchment font-bold mt-2">Dual Master Crafts</h2>
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <span class="text-xs font-semibold text-terracotta uppercase tracking-[0.25em]">La Carta • The Culinary Canvas</span>
+                <h2 class="font-playfair text-3xl sm:text-5xl font-bold text-emeraldRich">Curated Fusion Creations</h2>
+                <p class="text-charcoal-muted text-sm sm:text-base">
+                    Every dish is a certified canvas of authentic Italian geometry and royal Indian spice craft.
+                </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="border border-agedGold/30 p-8 rounded-sm bg-black/20 space-y-4">
-                    <span class="text-terracotta text-xs font-bold uppercase tracking-widest">Italian Mastery</span>
-                    <h3 class="font-serif text-3xl text-agedGold">Pasta Fresca & Slow Emulsification</h3>
-                    <p class="text-parchment/80 text-sm leading-relaxed">
-                        Hand-extruded semolina pasta dough cooked strictly <em>al dente</em>, finished using pan-tossing techniques to bind silky emulsified sauces with rich bone broths or vegetable reductions.
+            <!-- Search Bar & Dietary Filter Toggles Bar -->
+            <div class="bg-parchment-dark rounded-2xl p-4 sm:p-6 mb-10 border border-gold/30 shadow-md">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div class="relative w-full md:w-96">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-charcoal-muted"></i>
+                        <input type="text" id="menu-search" placeholder="Search dish, spice, ingredient (e.g. Truffle, Saffron)..." class="w-full pl-11 pr-4 py-2.5 rounded-full border border-gold/30 bg-parchment text-sm focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent text-charcoal">
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto justify-center sm:justify-start">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mr-2">Dietary:</span>
+                        
+                        <button onclick="toggleDietaryFilter('vegan')" id="filter-vegan" class="diet-filter-btn px-3 py-1.5 rounded-full text-xs font-medium border border-gold/30 bg-parchment hover:border-emeraldRich transition-all flex items-center space-x-1">
+                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                            <span>Vegan</span>
+                        </button>
+                        
+                        <button onclick="toggleDietaryFilter('jain')" id="filter-jain" class="diet-filter-btn px-3 py-1.5 rounded-full text-xs font-medium border border-gold/30 bg-parchment hover:border-emeraldRich transition-all flex items-center space-x-1">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                            <span>Jain Friendly</span>
+                        </button>
+                        
+                        <button onclick="toggleDietaryFilter('gf')" id="filter-gf" class="diet-filter-btn px-3 py-1.5 rounded-full text-xs font-medium border border-gold/30 bg-parchment hover:border-emeraldRich transition-all flex items-center space-x-1">
+                            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                            <span>Gluten-Free</span>
+                        </button>
+
+                        <button onclick="toggleDietaryFilter('nf')" id="filter-nf" class="diet-filter-btn px-3 py-1.5 rounded-full text-xs font-medium border border-gold/30 bg-parchment hover:border-emeraldRich transition-all flex items-center space-x-1">
+                            <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                            <span>Nut-Free</span>
+                        </button>
+
+                        <button onclick="resetFilters()" class="text-xs text-terracotta hover:underline ml-2 font-medium">
+                            Reset All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Category Tabs -->
+            <div class="sticky top-20 z-30 bg-parchment/95 backdrop-blur-md py-4 border-b border-gold/20 mb-10 -mx-4 px-4 sm:mx-0 sm:px-0">
+                <div class="flex space-x-2 sm:space-x-4 overflow-x-auto no-scrollbar pb-2 sm:pb-0 justify-start sm:justify-center" id="category-tabs">
+                    <button onclick="setCategory('all', this)" class="cat-tab active px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold whitespace-nowrap transition-all duration-300 bg-emeraldRich text-gold border border-gold shadow-md">
+                        All Canvas Creations
+                    </button>
+                    <button onclick="setCategory('antipasti', this)" class="cat-tab px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold whitespace-nowrap transition-all duration-300 bg-parchment-dark text-charcoal hover:bg-emeraldRich hover:text-gold border border-gold/20">
+                        Antipasti & Chaat
+                    </button>
+                    <button onclick="setCategory('primi', this)" class="cat-tab px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold whitespace-nowrap transition-all duration-300 bg-parchment-dark text-charcoal hover:bg-emeraldRich hover:text-gold border border-gold/20">
+                        Primi & Biryani
+                    </button>
+                    <button onclick="setCategory('secondi', this)" class="cat-tab px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold whitespace-nowrap transition-all duration-300 bg-parchment-dark text-charcoal hover:bg-emeraldRich hover:text-gold border border-gold/20">
+                        Secondi & Curries
+                    </button>
+                    <button onclick="setCategory('dolci', this)" class="cat-tab px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold whitespace-nowrap transition-all duration-300 bg-parchment-dark text-charcoal hover:bg-emeraldRich hover:text-gold border border-gold/20">
+                        Dolci & Mithai
+                    </button>
+                    <button onclick="setCategory('cocktails', this)" class="cat-tab px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold whitespace-nowrap transition-all duration-300 bg-parchment-dark text-charcoal hover:bg-emeraldRich hover:text-gold border border-gold/20">
+                        Craft Cocktails
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Menu Items Grid -->
+            <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+            <!-- Empty Search State -->
+            <div id="no-results" class="hidden text-center py-16 space-y-4">
+                <i class="fa-solid fa-utensils text-4xl text-gold/60"></i>
+                <h3 class="font-playfair text-2xl text-emeraldRich font-bold">No canvas match found</h3>
+                <p class="text-sm text-charcoal-muted max-w-md mx-auto">We couldn't find dishes matching your selected search query and dietary toggles. Try adjusting filters.</p>
+                <button onclick="resetFilters()" class="px-6 py-2 bg-terracotta text-white rounded-full text-xs uppercase font-semibold">Reset Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef's Tasting Experience Section -->
+    <section id="tasting-experience" class="py-24 bg-emeraldRich text-parchment relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF37_1px,_transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="inline-block text-xs uppercase tracking-[0.3em] text-gold font-bold bg-gold/10 px-3 py-1 rounded-full border border-gold/30">
+                        Exclusive Gastronomy
+                    </span>
+                    <h2 class="font-playfair text-3xl sm:text-5xl font-bold text-parchment">
+                        The 7-Course <br>
+                        <span class="italic font-cormorant text-gold font-normal">Silk Route Tasting Menu</span>
+                    </h2>
+                    <p class="text-sm text-parchment/80 leading-relaxed font-light">
+                        Guided by Executive Chef Marco Kapoor, this multi-sensory journey pairs centuries-old Italian pasta heritage with rare regional spices sourced from Old Delhi spice guilds and Kerala estates.
                     </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-3">
+                            <div class="p-2 bg-gold/20 rounded-lg text-gold mt-1">
+                                <i class="fa-solid fa-wine-glass"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-playfair font-bold text-base text-gold">Sommelier Barolo & Vintage Pairing</h4>
+                                <p class="text-xs text-parchment/70">Aged Tuscan Brunello & Indian boutique Sula Reserves chosen per course.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <div class="p-2 bg-gold/20 rounded-lg text-gold mt-1">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-playfair font-bold text-base text-gold">Duration & Seating</h4>
+                                <p class="text-xs text-parchment/70">120 Minutes Experience • Available at the Private Chef's Counter (Max 12 guests/night).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex items-center space-x-6">
+                        <div>
+                            <span class="text-xs uppercase text-parchment/60 block">Price Per Guest</span>
+                            <span class="font-playfair text-3xl font-bold text-gold">$165</span>
+                            <span class="text-xs text-parchment/60 block">+ $75 Sommelier Pairing</span>
+                        </div>
+                        <a href="#reservation" onclick="preselectTasting()" class="bg-gold hover:bg-gold-hover text-emeraldRich font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-luxury hover:scale-105">
+                            Reserve Tasting Seat
+                        </a>
+                    </div>
                 </div>
 
-                <div class="border border-agedGold/30 p-8 rounded-sm bg-black/20 space-y-4">
-                    <span class="text-terracotta text-xs font-bold uppercase tracking-widest">Indian Heritage</span>
-                    <h3 class="font-serif text-3xl text-agedGold">Tandoor Charcoal & Dum Slow-Cooking</h3>
-                    <p class="text-parchment/80 text-sm leading-relaxed">
-                        High-heat clay oven searing to lock in intense moisture and smoky charred aromas, combined with centuries-old <em>Dum</em> steam infusion using artisanal spice sachets.
-                    </p>
+                <div class="lg:col-span-7">
+                    <div class="glass-dark p-6 sm:p-8 rounded-3xl space-y-6">
+                        <div class="flex items-center justify-between border-b border-gold/20 pb-4">
+                            <h3 class="font-playfair text-2xl text-gold font-bold">Course-by-Course Preview</h3>
+                            <span class="text-xs text-parchment/60 font-mono" id="course-step-label">Course 1 of 7</span>
+                        </div>
+
+                        <div id="course-card-content" class="min-h-[220px] flex flex-col justify-between space-y-4">
+                            <div>
+                                <span id="course-tag" class="text-[10px] uppercase font-bold tracking-widest text-terracotta bg-parchment/10 px-2 py-1 rounded border border-terracotta/30">
+                                    Amuse-Bouche
+                                </span>
+                                <h4 id="course-title" class="font-playfair text-2xl font-bold text-parchment mt-2">
+                                    Pani Puri Arancini with Mint Consommé
+                                </h4>
+                                <p id="course-sub" class="text-xs text-gold italic">
+                                    Arancini di Riso al Mint Consommé
+                                </p>
+                                <p id="course-desc" class="text-sm text-parchment/80 mt-3 font-light leading-relaxed">
+                                    Saffron-infused Arborio rice spheres stuffed with spiced potato ragù, served over a chilled mint-basil clarity consommé.
+                                </p>
+                            </div>
+
+                            <div class="bg-black/20 p-3 rounded-xl flex items-center justify-between text-xs">
+                                <span class="text-gold font-semibold"><i class="fa-solid fa-wine-bottle mr-1"></i> Wine Match:</span>
+                                <span id="course-wine" class="text-parchment/90">2021 Prosecco Superiore di Valdobbiadene</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-gold/20">
+                            <button onclick="prevCourse()" class="p-3 rounded-full bg-gold/10 hover:bg-gold/30 text-gold transition-colors" aria-label="Previous Course">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+
+                            <div class="flex space-x-1" id="course-dots"></div>
+
+                            <button onclick="nextCourse()" class="p-3 rounded-full bg-gold/10 hover:bg-gold/30 text-gold transition-colors" aria-label="Next Course">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-charcoal text-parchment pt-16 pb-12 border-t border-agedGold/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            <div class="space-y-4">
-                <span class="font-serif text-2xl font-bold tracking-wider text-agedGold">FUSIONI</span>
-                <p class="text-xs text-parchment/70 leading-relaxed">An exclusive fine-dining journey synthesizing classic Italian culinary roots with royal Indian gastronomy.</p>
-                <div class="flex items-center space-x-3 pt-2">
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-parchment/10 hover:bg-agedGold text-parchment hover:text-emeraldLeaf flex items-center justify-center transition-all border border-agedGold/30 text-sm" aria-label="Instagram">
+    <!-- Social Showcase Section (Replaced QR section) -->
+    <section id="social-showcase" class="py-20 bg-parchment-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <span class="text-xs font-semibold text-terracotta uppercase tracking-[0.25em]">Connect & Follow</span>
+                <h2 class="font-playfair text-3xl sm:text-5xl font-bold text-emeraldRich">Join Our Culinary Circle</h2>
+                <div class="w-24 h-0.5 bg-gold mx-auto"></div>
+                <p class="text-charcoal-muted text-sm sm:text-base">
+                    Discover seasonal secrets, behind-the-scenes wood oven craft, and guest experiences across our official channels.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Instagram Card -->
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-3xl border border-gold/30 shadow-luxury hover:border-gold transition-all duration-300 group hover:-translate-y-1 block">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-2xl shadow-md group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-parchment/10 hover:bg-agedGold text-parchment hover:text-emeraldLeaf flex items-center justify-center transition-all border border-agedGold/30 text-sm" aria-label="Facebook">
+                    </div>
+                    <div class="mt-5 space-y-1">
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-terracotta">Visual Stories</span>
+                        <h4 class="font-playfair text-xl font-bold text-emeraldRich">Instagram</h4>
+                        <p class="text-xs text-charcoal-muted">Daily reels from the tandoor kitchen, pasta masterclasses, and pairings.</p>
+                        <p class="text-xs font-semibold text-gold pt-2">@fusioni.dining <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></p>
+                    </div>
+                </a>
+
+                <!-- Facebook Card -->
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-3xl border border-gold/30 shadow-luxury hover:border-gold transition-all duration-300 group hover:-translate-y-1 block">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-2xl shadow-md group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-                    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-parchment/10 hover:bg-agedGold text-parchment hover:text-emeraldLeaf flex items-center justify-center transition-all border border-agedGold/30 text-sm" aria-label="TikTok">
+                    </div>
+                    <div class="mt-5 space-y-1">
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-terracotta">Community</span>
+                        <h4 class="font-playfair text-xl font-bold text-emeraldRich">Facebook</h4>
+                        <p class="text-xs text-charcoal-muted">Chef panel schedules, live tastings, and seasonal guest announcements.</p>
+                        <p class="text-xs font-semibold text-gold pt-2">/FusioniOfficial <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></p>
+                    </div>
+                </a>
+
+                <!-- TikTok Card -->
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-3xl border border-gold/30 shadow-luxury hover:border-gold transition-all duration-300 group hover:-translate-y-1 block">
+                    <div class="w-14 h-14 rounded-2xl bg-black flex items-center justify-center text-white text-2xl shadow-md group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-tiktok"></i>
-                    </a>
-                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-parchment/10 hover:bg-agedGold text-parchment hover:text-emeraldLeaf flex items-center justify-center transition-all border border-agedGold/30 text-sm" aria-label="X / Twitter">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                    <a href="https://tripadvisor.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-parchment/10 hover:bg-agedGold text-parchment hover:text-emeraldLeaf flex items-center justify-center transition-all border border-agedGold/30 text-sm" aria-label="Tripadvisor">
-                        <i class="fa-solid fa-plane-departure"></i>
-                    </a>
+                    </div>
+                    <div class="mt-5 space-y-1">
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-terracotta">Short Bites</span>
+                        <h4 class="font-playfair text-xl font-bold text-emeraldRich">TikTok</h4>
+                        <p class="text-xs text-charcoal-muted">Quick culinary tips: making pasta al dente and dum steam sealing secrets.</p>
+                        <p class="text-xs font-semibold text-gold pt-2">@fusioni_kitchen <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></p>
+                    </div>
+                </a>
+
+                <!-- Tripadvisor Card -->
+                <a href="https://tripadvisor.com" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-3xl border border-gold/30 shadow-luxury hover:border-gold transition-all duration-300 group hover:-translate-y-1 block">
+                    <div class="w-14 h-14 rounded-2xl bg-emeraldRich flex items-center justify-center text-gold text-2xl shadow-md group-hover:scale-110 transition-transform border border-gold/40">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div class="mt-5 space-y-1">
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-terracotta">Guest Reviews</span>
+                        <h4 class="font-playfair text-xl font-bold text-emeraldRich">TripAdvisor</h4>
+                        <p class="text-xs text-charcoal-muted">Michelin Guide recognition and verified culinary reviews.</p>
+                        <p class="text-xs font-semibold text-gold pt-2">Fusioni Bengaluru <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Atmosphere Visual Showcase -->
+            <div class="mt-12 relative rounded-3xl overflow-hidden shadow-2xl h-[360px] group border-2 border-gold/30">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="Restaurant Interior Atmosphere" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-emeraldRich/90 via-emeraldRich/30 to-transparent"></div>
+                
+                <div class="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-parchment">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-gold bg-black/40 px-3 py-1 rounded-full backdrop-blur-md">Atmosphere</span>
+                        <h4 class="font-playfair text-2xl font-bold mt-1">A Sensory Haven in the Heart of the City</h4>
+                        <p class="text-xs text-parchment/80">Acoustic jazz, hand-carved teakwood, Venetian glass chandeliers, and aromatics of slow-roasting saffron & cardamom.</p>
+                    </div>
+                    <button onclick="openSocialsModal()" class="bg-gold hover:bg-gold-hover text-emeraldRich font-bold px-6 py-3 rounded-full text-xs uppercase tracking-widest whitespace-nowrap shadow-luxury transition-all">
+                        View All Channels
+                    </button>
                 </div>
             </div>
+        </div>
+    </section>
 
-
-            <div>
-                <h4 class="font-serif text-lg text-agedGold font-bold mb-4">Location & Hours</h4>
-                <p class="text-xs text-parchment/80 leading-relaxed">
-                    108 Via Roma & Spice Way<br/>
-                    Indiranagar, Bengaluru, 560038<br/><br/>
-                    <strong>Tue – Sun:</strong> 12:00 PM – 11:30 PM<br/>
-                    <strong>Monday:</strong> Closed
+    <!-- Table Reservation Section -->
+    <section id="reservation" class="py-24 bg-parchment relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-12">
+                <span class="text-xs font-semibold text-terracotta uppercase tracking-[0.25em]">Reservations • Secure Your Table</span>
+                <h2 class="font-playfair text-3xl sm:text-5xl font-bold text-emeraldRich">Reserve Your Experience</h2>
+                <div class="w-20 h-0.5 bg-gold mx-auto"></div>
+                <p class="text-charcoal-muted text-sm max-w-xl mx-auto">
+                    For parties over 8 or bespoke private dining requests, contact our concierge directly at +1 (800) 555-FUSION.
                 </p>
             </div>
 
-            <div>
-                <h4 class="font-serif text-lg text-agedGold font-bold mb-4">Reservations</h4>
-                <p class="text-xs text-parchment/80 leading-relaxed">
-                    Phone: +91 (80) 4958-3000<br/>
-                    Email: concierge@fusioni.com<br/>
-                    Dress Code: Smart Elegant
-                </p>
-            </div>
+            <!-- Booking Card Form -->
+            <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-luxury border border-gold/40">
+                <form id="reservation-form" onsubmit="handleReservation(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-emeraldRich uppercase tracking-wider">Date</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-calendar-days absolute left-4 top-1/2 -translate-y-1/2 text-gold"></i>
+                                <input type="date" id="res-date" required class="w-full pl-11 pr-4 py-3 rounded-xl border border-gold/30 bg-parchment text-sm font-medium focus:outline-none focus:ring-2 focus:ring-terracotta text-charcoal">
+                            </div>
+                        </div>
 
-            <div>
-                <h4 class="font-serif text-lg text-agedGold font-bold mb-4">Newsletter</h4>
-                <p class="text-xs text-parchment/70 mb-3">Subscribe for chef's table invites and seasonal menu reveals.</p>
-                <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to Fusioni.');" class="flex">
-                    <input type="email" placeholder="Your email address" required class="bg-parchment/10 text-parchment px-3 py-2 text-xs border border-agedGold/30 rounded-l-sm focus:outline-none w-full">
-                    <button type="submit" class="bg-terracotta hover:bg-emeraldLeaf text-white px-4 py-2 text-xs font-bold uppercase transition-colors rounded-r-sm">Join</button>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-emeraldRich uppercase tracking-wider">Time Slot</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-clock absolute left-4 top-1/2 -translate-y-1/2 text-gold"></i>
+                                <select id="res-time" required class="w-full pl-11 pr-4 py-3 rounded-xl border border-gold/30 bg-parchment text-sm font-medium focus:outline-none focus:ring-2 focus:ring-terracotta text-charcoal">
+                                    <option value="17:30">05:30 PM</option>
+                                    <option value="18:30">06:30 PM</option>
+                                    <option value="19:30" selected>07:30 PM (Prime)</option>
+                                    <option value="20:30">08:30 PM (Prime)</option>
+                                    <option value="21:30">09:30 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-emeraldRich uppercase tracking-wider">Guests</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-user-group absolute left-4 top-1/2 -translate-y-1/2 text-gold"></i>
+                                <select id="res-guests" required class="w-full pl-11 pr-4 py-3 rounded-xl border border-gold/30 bg-parchment text-sm font-medium focus:outline-none focus:ring-2 focus:ring-terracotta text-charcoal">
+                                    <option value="1">1 Guest</option>
+                                    <option value="2" selected>2 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="6">6 Guests</option>
+                                    <option value="8">8 Guests (Chef Table)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-emeraldRich uppercase tracking-wider">Seating Area</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-chair absolute left-4 top-1/2 -translate-y-1/2 text-gold"></i>
+                                <select id="res-area" class="w-full pl-11 pr-4 py-3 rounded-xl border border-gold/30 bg-parchment text-sm font-medium focus:outline-none focus:ring-2 focus:ring-terracotta text-charcoal">
+                                    <option value="Main Dining Hall">Main Dining Hall</option>
+                                    <option value="Tuscan Courtyard Patio">Tuscan Courtyard</option>
+                                    <option value="Chef's Tandoor Counter">Chef's Tandoor Counter</option>
+                                    <option value="Private Dining Vault">Private Dining Vault</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-emeraldRich uppercase tracking-wider">Full Name</label>
+                            <input type="text" id="res-name" required placeholder="e.g. Lord Alessandro Sharma" class="w-full p-3 rounded-xl border border-gold/30 bg-parchment text-sm focus:outline-none focus:ring-2 focus:ring-terracotta text-charcoal">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-emeraldRich uppercase tracking-wider">Email Address</label>
+                            <input type="email" id="res-email" required placeholder="concierge@fusioni.com" class="w-full p-3 rounded-xl border border-gold/30 bg-parchment text-sm focus:outline-none focus:ring-2 focus:ring-terracotta text-charcoal">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-emeraldRich uppercase tracking-wider">Special Occasion / Dietary Notes</label>
+                        <textarea id="res-notes" rows="2" placeholder="Anniversary, birthday, allergy requirements (e.g. Nut-free, Jain options required)..." class="w-full p-3 rounded-xl border border-gold/30 bg-parchment text-sm focus:outline-none focus:ring-2 focus:ring-terracotta text-charcoal"></textarea>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gold/20">
+                        <div class="flex items-center space-x-2 text-xs text-charcoal-muted">
+                            <i class="fa-solid fa-shield-halved text-emeraldRich"></i>
+                            <span>Instant confirmation • No deposit fee for standard seating</span>
+                        </div>
+                        
+                        <button type="submit" class="w-full sm:w-auto bg-terracotta hover:bg-terracotta-hover text-white font-bold px-8 py-4 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-luxury hover:scale-105 border border-gold/30">
+                            Confirm Reservation
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
+    </section>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-parchment/10 flex flex-col sm:flex-row items-center justify-between text-xs text-parchment/50">
-            <p>&copy; 2026 Fusioni Restaurant. All rights reserved.</p>
-            <div class="flex space-x-6 mt-4 sm:mt-0">
-                <a href="#" class="hover:text-agedGold transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-agedGold transition-colors">Terms of Service</a>
+    <!-- Footer Section -->
+    <footer class="bg-emeraldRich text-parchment border-t-2 border-gold pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-full border border-gold bg-terracotta text-gold font-playfair font-bold flex items-center justify-center text-lg">
+                            F
+                        </div>
+                        <span class="font-playfair text-2xl font-bold tracking-tight text-gold">FUSIONI</span>
+                    </div>
+                    <p class="text-xs text-parchment/70 leading-relaxed font-light">
+                        Where Old World Tuscan tradition meets the royal spice routes of Delhi and Awadh. An unforgettable sensory dining canvas.
+                    </p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-emeraldRich-dark flex items-center justify-center text-gold hover:bg-gold hover:text-emeraldRich transition-all" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-xs"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-emeraldRich-dark flex items-center justify-center text-gold hover:bg-gold hover:text-emeraldRich transition-all" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f text-xs"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-emeraldRich-dark flex items-center justify-center text-gold hover:bg-gold hover:text-emeraldRich transition-all" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok text-xs"></i>
+                        </a>
+                        <a href="https://tripadvisor.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-emeraldRich-dark flex items-center justify-center text-gold hover:bg-gold hover:text-emeraldRich transition-all" aria-label="TripAdvisor">
+                            <i class="fa-solid fa-award text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-playfair text-lg font-bold text-gold border-b border-gold/20 pb-2">Hours of Gastronomy</h4>
+                    <ul class="space-y-2 text-xs text-parchment/80 font-light">
+                        <li class="flex justify-between">
+                            <span>Lunch Service:</span>
+                            <span class="text-gold">12:00 PM – 03:30 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Dinner Service:</span>
+                            <span class="text-gold">06:30 PM – 11:30 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Chef's Tasting Counter:</span>
+                            <span class="text-gold">Thu – Sun (08:00 PM)</span>
+                        </li>
+                        <li class="pt-2 text-[11px] text-terracotta font-medium">
+                            <i class="fa-solid fa-circle-info mr-1"></i> Valet Parking Available
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-playfair text-lg font-bold text-gold border-b border-gold/20 pb-2">Find Our Canvas</h4>
+                    <address class="not-italic text-xs text-parchment/80 space-y-2 font-light">
+                        <p class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot text-gold mt-0.5"></i>
+                            <span>42 Via Spice Royale, Fine Dining District, New Delhi & Milan</span>
+                        </p>
+                        <p class="flex items-center space-x-2">
+                            <i class="fa-solid fa-phone text-gold"></i>
+                            <span>+1 (800) 555-FUSION</span>
+                        </p>
+                        <p class="flex items-center space-x-2">
+                            <i class="fa-solid fa-envelope text-gold"></i>
+                            <span>reservations@fusioni-canvas.com</span>
+                        </p>
+                    </address>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-playfair text-lg font-bold text-gold border-b border-gold/20 pb-2">Private Table Gazette</h4>
+                    <p class="text-xs text-parchment/70 font-light">Subscribe for seasonal menu previews, sommelier notes, and VIP dining invitations.</p>
+                    <form onsubmit="handleNewsletter(event)" class="space-y-2">
+                        <input type="email" id="newsletter-email" required placeholder="Enter email address..." class="w-full px-4 py-2.5 rounded-xl border border-gold/30 bg-emeraldRich-dark text-xs text-parchment focus:outline-none focus:ring-1 focus:ring-gold">
+                        <button type="submit" class="w-full bg-gold hover:bg-gold-hover text-emeraldRich font-bold py-2.5 rounded-xl text-xs uppercase tracking-widest transition-all">
+                            Join Gazette
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gold/20 flex flex-col sm:flex-row items-center justify-between text-[11px] text-parchment/60">
+                <p>© 2026 Fusioni Culinary Canvas. All rights reserved. Crafted with passion & spice.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-gold transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-gold transition-colors">Terms of Dining</a>
+                    <a href="#" class="hover:text-gold transition-colors">Press Kit</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Table Reservation Modal -->
-    <div id="reservationModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-parchment w-full max-w-lg p-8 rounded-sm border border-agedGold/40 gold-border-glow relative">
-            <button onclick="closeModal('reservationModal')" class="absolute top-4 right-4 text-charcoal/60 hover:text-charcoal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-            <h3 class="font-serif text-3xl text-emeraldLeaf font-bold mb-2">Reserve Your Table</h3>
-            <p class="text-xs text-charcoal/70 mb-6">Please provide your details to confirm your dining experience.</p>
+    <!-- Slide-over Cart / Pre-order Tasting Drawer -->
+    <div id="preorder-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-auto" onclick="togglePreorderDrawer()"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10 pointer-events-auto">
+            <div class="w-screen max-w-md bg-parchment shadow-2xl flex flex-col border-l border-gold/30">
+                <div class="p-6 bg-emeraldRich text-parchment flex items-center justify-between border-b border-gold/20">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-utensils text-gold text-lg"></i>
+                        <h3 class="font-playfair font-bold text-xl text-gold">Your Dining Selection</h3>
+                    </div>
+                    <button onclick="togglePreorderDrawer()" class="text-parchment/70 hover:text-white" aria-label="Close Selection Drawer">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
 
-            <form id="reservationForm" onsubmit="handleReservationSubmit(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-1">Full Name</label>
-                    <input type="text" required class="w-full bg-white border border-agedGold/30 p-2.5 text-sm rounded-sm focus:border-terracotta focus:outline-none">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-1">Date</label>
-                        <input type="date" required class="w-full bg-white border border-agedGold/30 p-2.5 text-sm rounded-sm focus:border-terracotta focus:outline-none">
+                <div class="flex-1 overflow-y-auto p-6 space-y-4" id="preorder-items-list"></div>
+
+                <div class="p-6 bg-parchment-dark border-t border-gold/20 space-y-4">
+                    <div class="flex justify-between items-center font-playfair font-bold text-lg text-emeraldRich">
+                        <span>Estimated Total:</span>
+                        <span id="preorder-total" class="text-terracotta">$0</span>
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-1">Time</label>
-                        <select required class="w-full bg-white border border-agedGold/30 p-2.5 text-sm rounded-sm focus:border-terracotta focus:outline-none">
-                            <option value="">Select Time</option>
-                            <option value="12:30">12:30 PM</option>
-                            <option value="19:00">07:00 PM</option>
-                            <option value="20:30">08:30 PM</option>
-                            <option value="21:45">09:45 PM</option>
-                        </select>
-                    </div>
+                    <p class="text-[11px] text-charcoal-muted">Items in your selection will be shared with the restaurant concierge upon table check-in.</p>
+                    <button onclick="checkoutPreorder()" class="w-full bg-terracotta hover:bg-terracotta-hover text-white font-bold py-3.5 rounded-full text-xs uppercase tracking-widest shadow-lg transition-all">
+                        Confirm Table Pre-selection
+                    </button>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-1">Guests</label>
-                        <select required class="w-full bg-white border border-agedGold/30 p-2.5 text-sm rounded-sm focus:border-terracotta focus:outline-none">
-                            <option value="2">2 Guests</option>
-                            <option value="4">4 Guests</option>
-                            <option value="6">6 Guests</option>
-                            <option value="8+">8+ Guests (Private Dining)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-1">Phone</label>
-                        <input type="tel" required placeholder="+91..." class="w-full bg-white border border-agedGold/30 p-2.5 text-sm rounded-sm focus:border-terracotta focus:outline-none">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-1">Special Requests</label>
-                    <textarea rows="2" placeholder="Dietary restrictions, anniversaries, seating preference..." class="w-full bg-white border border-agedGold/30 p-2.5 text-sm rounded-sm focus:border-terracotta focus:outline-none"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-emeraldLeaf hover:bg-terracotta text-white py-3 rounded-sm text-xs font-bold uppercase tracking-widest transition-colors mt-2">
-                    Confirm Reservation Request
-                </button>
-            </form>
+            </div>
         </div>
     </div>
 
-    <!-- Social Channels Modal -->
+    <!-- Dish Detail Interactive Modal -->
+    <div id="dish-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden">
+        <div class="bg-parchment rounded-3xl max-w-2xl w-full overflow-hidden border border-gold/40 shadow-2xl relative animate-float">
+            <button onclick="closeDishModal()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-terracotta transition-colors" aria-label="Close Dish Detail">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2">
+                <img id="modal-dish-img" src="" alt="Dish Detail" class="w-full h-64 sm:h-full object-cover">
+                <div class="p-6 space-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span id="modal-dish-cat" class="text-[10px] uppercase font-bold tracking-widest text-terracotta bg-terracotta-light px-2 py-0.5 rounded">Category</span>
+                            <span id="modal-dish-spice" class="text-xs text-amber-600 font-medium"></span>
+                        </div>
+                        <h3 id="modal-dish-title" class="font-playfair text-2xl font-bold text-emeraldRich mt-2">Dish Title</h3>
+                        <p id="modal-dish-sub" class="text-xs text-gold italic font-cormorant font-semibold">Italian / Hindi Pairing</p>
+                        
+                        <p id="modal-dish-desc" class="text-xs text-charcoal-muted mt-3 leading-relaxed">Dish detailed description...</p>
+                        
+                        <div id="modal-dish-badges" class="flex flex-wrap gap-1.5 mt-3"></div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gold/20 flex items-center justify-between">
+                        <span id="modal-dish-price" class="font-playfair text-2xl font-bold text-emeraldRich">$0</span>
+                        <button id="modal-add-btn" class="bg-emeraldRich hover:bg-emeraldRich-dark text-gold px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all">
+                            Add To Selection
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socials Channels Modal -->
     <div id="socialsModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-parchment w-full max-w-sm p-6 rounded-sm border border-agedGold/40 gold-border-glow text-center relative">
-            <button onclick="closeModal('socialsModal')" class="absolute top-4 right-4 text-charcoal/60 hover:text-charcoal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <div class="bg-parchment w-full max-w-sm p-6 rounded-3xl border border-gold/40 shadow-luxury text-center relative">
+            <button onclick="closeSocialsModal()" class="absolute top-4 right-4 text-charcoal-muted hover:text-charcoal" aria-label="Close Socials Modal">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <span class="text-terracotta text-[10px] font-bold uppercase tracking-widest">Connect & Follow</span>
-            <h3 class="font-serif text-2xl text-emeraldLeaf font-bold mt-1 mb-2">Our Socials</h3>
-            <p class="text-xs text-charcoal/70 mb-6">Follow our culinary journey, chef's specials, and private events across platforms.</p>
+            <h3 class="font-playfair text-2xl text-emeraldRich font-bold mt-1 mb-2">Our Socials</h3>
+            <p class="text-xs text-charcoal-muted mb-6">Follow our culinary journey, chef's specials, and private events across platforms.</p>
 
             <div class="grid grid-cols-2 gap-3 mb-4">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white border border-agedGold/20 hover:border-agedGold rounded-sm transition text-left group">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white border border-gold/20 hover:border-gold rounded-xl transition text-left group">
                     <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 to-pink-600 flex items-center justify-center text-white text-base">
                         <i class="fa-brands fa-instagram"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-emeraldLeaf group-hover:text-terracotta">Instagram</p>
-                        <p class="text-[10px] text-charcoal/50">@fusioni.dining</p>
+                        <p class="text-xs font-bold text-emeraldRich group-hover:text-terracotta">Instagram</p>
+                        <p class="text-[10px] text-charcoal-muted">@fusioni.dining</p>
                     </div>
                 </a>
 
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white border border-agedGold/20 hover:border-agedGold rounded-sm transition text-left group">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white border border-gold/20 hover:border-gold rounded-xl transition text-left group">
                     <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white text-base">
                         <i class="fa-brands fa-facebook-f"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-emeraldLeaf group-hover:text-terracotta">Facebook</p>
-                        <p class="text-[10px] text-charcoal/50">/FusioniOfficial</p>
+                        <p class="text-xs font-bold text-emeraldRich group-hover:text-terracotta">Facebook</p>
+                        <p class="text-[10px] text-charcoal-muted">/FusioniOfficial</p>
                     </div>
                 </a>
 
-                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white border border-agedGold/20 hover:border-agedGold rounded-sm transition text-left group">
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white border border-gold/20 hover:border-gold rounded-xl transition text-left group">
                     <div class="w-9 h-9 rounded-full bg-black flex items-center justify-center text-white text-base">
                         <i class="fa-brands fa-tiktok"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-emeraldLeaf group-hover:text-terracotta">TikTok</p>
-                        <p class="text-[10px] text-charcoal/50">@fusioni_kitchen</p>
+                        <p class="text-xs font-bold text-emeraldRich group-hover:text-terracotta">TikTok</p>
+                        <p class="text-[10px] text-charcoal-muted">@fusioni_kitchen</p>
                     </div>
                 </a>
 
-                <a href="https://tripadvisor.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white border border-agedGold/20 hover:border-agedGold rounded-sm transition text-left group">
-                    <div class="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white text-base">
-                        <i class="fa-solid fa-plane-departure"></i>
+                <a href="https://tripadvisor.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white border border-gold/20 hover:border-gold rounded-xl transition text-left group">
+                    <div class="w-9 h-9 rounded-full bg-emeraldRich flex items-center justify-center text-gold text-base">
+                        <i class="fa-solid fa-award"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-emeraldLeaf group-hover:text-terracotta">Tripadvisor</p>
-                        <p class="text-[10px] text-charcoal/50">Fusioni Bengaluru</p>
+                        <p class="text-xs font-bold text-emeraldRich group-hover:text-terracotta">Tripadvisor</p>
+                        <p class="text-[10px] text-charcoal-muted">Fusioni Bengaluru</p>
                     </div>
                 </a>
             </div>
 
-            <p class="text-[11px] text-charcoal/50 italic">Tag us in your stories with #FusioniCanvas</p>
+            <p class="text-[11px] text-charcoal-muted italic">Tag us in your stories with #FusioniCanvas</p>
         </div>
     </div>
 
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 space-y-2 pointer-events-none"></div>
 
-    <!-- Application Script -->
     <script>
-        // Data Store
-        const categories = [
-            { id: 'all', label: 'All Courses' },
-            { id: 'antipasti', label: 'Antipasti & Chaat' },
-            { id: 'primi', label: 'Primi & Biryani' },
-            { id: 'secondi', label: 'Secondi & Curries' },
-            { id: 'dolci', label: 'Dolci & Mithai' },
-            { id: 'cocktails', label: 'Craft Cocktails' }
-        ];
-
-        const dietaryTags = ['Vegan', 'Jain', 'Gluten-Free', 'Nut-Free'];
-
-        const menuItems = [
+        const MENU_ITEMS = [
             {
-                id: 1,
-                category: 'antipasti',
-                title: 'Arancini Cacio e Pepe with Makhani Dip',
-                subTitle: 'Crispy Rice Spheres × Creamy Tomato Spice',
-                price: '₹750',
-                description: 'Carnaroli rice balls stuffed with aged Pecorino Romano and crushed black pepper, served on a reduction of velvet Mughlai Makhani sauce.',
-                tags: ['Gluten-Free']
+                id: 'item-1',
+                title: 'Butter Chicken Lasagna Signature',
+                pairingName: 'Lasagna al Ragù di Pollo al Burro',
+                category: 'secondi',
+                price: 38,
+                image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80',
+                description: 'Layers of hand-rolled spinach pasta sheets, rich Old Delhi butter chicken morsels, San Marzano tomato gravy, and smoked buffalo mozzarella baked in our wood oven.',
+                tags: ['nf'],
+                spice: '🌶️ Mild Spice',
+                pairingNote: 'Recommended with Barolo DOCG 2018'
             },
             {
-                id: 2,
-                category: 'antipasti',
-                title: 'Burrata Papdi Chaat',
-                subTitle: 'Pugliese Cream Cheese × Spiced Crisps',
-                price: '₹890',
-                description: 'Fresh imported Burrata over hand-crafted spiced flour wafers, garnished with mint-coriander emulsion, tamarind reduction, and pomegranate pearls.',
-                tags: ['Nut-Free']
-            },
-            {
-                id: 3,
-                category: 'primi',
+                id: 'item-2',
                 title: 'Truffle Dal Makhani Risotto',
-                subTitle: 'Arborio Grain × 24-Hour Slow-Cooked Black Lentil',
-                price: '₹1,250',
-                description: 'Arborio rice slow-simmered in rich 24-hour coal-dumped Dal Makhani broth, finished with cultured churned butter and black truffle oil shaving.',
-                tags: ['Jain', 'Gluten-Free']
-            },
-            {
-                id: 4,
+                pairingName: 'Risotto al Dal Makhani e Tartufo',
                 category: 'primi',
-                title: 'Butter Chicken Lasagna Bolognese',
-                subTitle: 'Handmade Pasta Layers × Tandoori Chicken Sauce',
-                price: '₹1,350',
-                description: 'Sheet pasta layered with clay-oven charred pulled chicken in rich fenugreek tomato gravy, interleaved with silky Bechamel and Mozzarella.',
-                tags: ['Nut-Free']
+                price: 34,
+                image: 'https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=800&q=80',
+                description: 'Aged Carnaroli rice simmered slow in 24-hour dark lentil broth, finished with cultured churned ghee, Parmigiano-Reggiano, and black winter truffle shaver.',
+                tags: ['gf', 'nf'],
+                spice: '🌶️ Subtle',
+                pairingNote: 'Pairs delightfully with Tuscan Chianti Classico'
             },
             {
-                id: 5,
-                category: 'secondi',
-                title: 'Osso Buco Rogan Josh',
-                subTitle: 'Braised Veal Shank × Kashmiri Aromatics',
-                price: '₹1,850',
-                description: 'Cross-cut veal shank braised slow-and-low in a saffron, Kashmiri chili, and fennel gravy, served atop saffron risotto alla Milanese.',
-                tags: ['Gluten-Free', 'Nut-Free']
+                id: 'item-3',
+                title: 'Tandoori Burrata & Heirloom Chaat',
+                pairingName: 'Burrata Affumicata e Pomodori',
+                category: 'antipasti',
+                price: 26,
+                image: 'https://images.unsplash.com/photo-1592417817098-8f3d6eb231fc?auto=format&fit=crop&w=800&q=80',
+                description: 'Whole Pugliese burrata lightly charred over cinnamon wood, paired with heirloom yellow tomatoes, tamarind glaze, crispy basil leaves, and coriander oil.',
+                tags: ['gf', 'jain'],
+                spice: '🌿 Fresh & Tangy',
+                pairingNote: 'Pairs with Chilled Pinot Grigio'
             },
             {
-                id: 6,
-                category: 'secondi',
-                title: 'Pan-Seared Sea Bass Porcini Moilee',
-                subTitle: 'Wild Mushrooms × Coconut Turmeric Broth',
-                price: '₹1,650',
-                description: 'Crispy Chilean sea bass paired with sautéed Italian Porcini mushrooms, floating in a tempered Malabar coconut milk broth.',
-                tags: ['Gluten-Free', 'Vegan']
+                id: 'item-4',
+                title: 'Kashmiri Saffron Gnocchi in Shahi Korma',
+                pairingName: 'Gnocchi allo Zafferano e Korma Reale',
+                category: 'primi',
+                price: 32,
+                image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80',
+                description: 'Fluffy potato gnocchi hand-kneaded with pure Kashmiri saffron strands, bathed in a white cashew-cardamom velouté, finished with toasted pistachio dust.',
+                tags: ['vegan'],
+                spice: '🌿 Gentle & Fragrant',
+                pairingNote: 'Pairs with Soave Classico 2021'
             },
             {
-                id: 7,
+                id: 'item-5',
+                title: 'Ravioli Stuffed with Sikandari Raan',
+                pairingName: 'Ravioli Ripieni di Agnello Speziato',
+                category: 'primi',
+                price: 36,
+                image: 'https://images.unsplash.com/photo-1587740896339-96a761e0508d?auto=format&fit=crop&w=800&q=80',
+                description: 'Pasta pockets filled with 12-hour braised lamb leg, nutmeg, and caramelized onions, tossed in a reduced rosemary-clove jus and aged pecorino.',
+                tags: ['nf'],
+                spice: '🌶️🌶️ Robust',
+                pairingNote: 'Best with Amarone della Valpolicella'
+            },
+            {
+                id: 'item-6',
+                title: 'Sourdough Naan Pizza: Truffle & Paneer',
+                pairingName: 'Pizza al Lievito Madre e Paneer',
+                category: 'antipasti',
+                price: 28,
+                image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
+                description: '72-hour fermented sourdough wood-fired flatbread topped with artisanal cottage cheese cubes, charred garlic, fenugreek cream, and white truffle oil.',
+                tags: ['jain', 'nf'],
+                spice: '🌿 Mild',
+                pairingNote: 'Pairs with Crisp Vermentino'
+            },
+            {
+                id: 'item-7',
+                title: 'Malabar Coast Scallop Carpaccio',
+                pairingName: 'Carpaccio di Capesante con Cocco e Curry',
+                category: 'antipasti',
+                price: 29,
+                image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
+                description: 'Thinly sliced Hokkaido sea scallops drizzled with raw coconut oil emulsion, curry leaf ash, finger lime caviar, and pink Himalayan sea salt.',
+                tags: ['gf', 'nf'],
+                spice: '🌿 Zesty & Fresh',
+                pairingNote: 'Pairs with Sparkling Franciacorta'
+            },
+            {
+                id: 'item-8',
+                title: 'Pistachio Cannoli with Gulab Jamun Core',
+                pairingName: 'Cannoli Siciliani al Gulab Jamun',
                 category: 'dolci',
-                title: 'Cardamom Cannoli with Pistachio Shrikhand',
-                subTitle: 'Sicilian Shells × Hung Curd Cream',
-                price: '₹650',
-                description: 'Fried pastry tubes lined with dark chocolate, filled with whipped saffron-cardamom hung yogurt, finished with crushed Iranian pistachios.',
-                tags: ['Nut-Free']
+                price: 18,
+                image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
+                description: 'Crispy Sicilian pastry shell lined with dark chocolate, filled with cardamom ricotta and centered with a warm syrup-soaked Gulab Jamun sphere.',
+                tags: ['jain'],
+                spice: '🍩 Sweet Elegance',
+                pairingNote: 'Served with Vintage Moscato d’Asti'
             },
             {
-                id: 8,
+                id: 'item-9',
+                title: 'Deconstructed Mango Kulfi Tiramisu',
+                pairingName: 'Tiramisù al Mango Alphonso e Cardamomo',
+                category: 'dolci',
+                price: 20,
+                image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80',
+                description: 'Espresso & rum soaked Savoiardi ladyfingers layered with whipped mascarpone cheese and Alphonso mango kulfi reduction.',
+                tags: ['gf', 'jain'],
+                spice: '🍩 Tropical Sweet',
+                pairingNote: 'Complemented by Marsala Fine Wine'
+            },
+            {
+                id: 'item-10',
+                title: 'Bolognese Biryani en Croûte',
+                pairingName: 'Biryani di Manzo e Strati di Pasta',
+                category: 'secondi',
+                price: 42,
+                image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80',
+                description: 'Slow-cooked Wagyu beef Bolognese layered with basmati rice, mint, brown onions, and sealed under a puff pastry crust infused with saffron ghee.',
+                tags: ['nf'],
+                spice: '🌶️🌶️ Deep Spice',
+                pairingNote: 'Pairs with Super Tuscan Red'
+            },
+            {
+                id: 'item-11',
+                title: 'Old Delhi Negroni with Cinnamon Smoked Rim',
+                pairingName: 'Negroni Speziato all’Anice Stellato',
                 category: 'cocktails',
-                title: 'Milanese Turmeric Negroni',
-                subTitle: 'Campari × Infused Spiced Gin',
-                price: '₹950',
-                description: 'Campari, sweet Vermouth, and small-batch Gin infused with fresh wild turmeric root, star anise, and flamed orange peel.',
-                tags: ['Vegan', 'Gluten-Free']
+                price: 22,
+                image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80',
+                description: 'Artisanal Gin infused with star anise and roasted cardamom, Campari, Sweet Vermouth, presented under a cinnamon smoke cloche.',
+                tags: ['vegan', 'gf'],
+                spice: '🍸 Smoked & Aromatic',
+                pairingNote: 'Ideal Apéritif'
+            },
+            {
+                id: 'item-12',
+                title: 'Limoncello & Turmeric Spritz',
+                pairingName: 'Spritz al Limoncello e Curcuma',
+                category: 'cocktails',
+                price: 20,
+                image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
+                description: 'House-made Amalfi limoncello, organic turmeric syrup, Prosecco, soda, and a sprig of bruised fresh mint.',
+                tags: ['vegan', 'gf'],
+                spice: '🍸 Refreshing Citrus',
+                pairingNote: 'Perfect Sunset Aperitivo'
             }
         ];
 
-        // State Management
-        let activeCategory = 'all';
-        let activeTags = [];
-        let searchQuery = '';
+        const TASTING_COURSES = [
+            {
+                tag: 'Amuse-Bouche • Course 1',
+                title: 'Pani Puri Arancini with Mint Consommé',
+                sub: 'Arancini di Riso al Mint Consommé',
+                desc: 'Saffron-infused Arborio rice spheres stuffed with spiced potato ragù, served over a chilled mint-basil clarity consommé.',
+                wine: '2021 Prosecco Superiore di Valdobbiadene'
+            },
+            {
+                tag: 'Antipasto • Course 2',
+                title: 'Tandoori Burrata & Heirloom Chaat',
+                sub: 'Burrata Affumicata e Pomodori',
+                desc: 'Whole Pugliese burrata lightly charred over cinnamon wood, paired with heirloom yellow tomatoes and coriander oil.',
+                wine: '2022 Vermentino di Sardegna'
+            },
+            {
+                tag: 'Primi • Course 3',
+                title: 'Kashmiri Saffron Gnocchi in Shahi Korma',
+                sub: 'Gnocchi allo Zafferano e Korma Reale',
+                desc: 'Fluffy potato gnocchi hand-kneaded with pure Kashmiri saffron, bathed in a white cashew-cardamom velouté.',
+                wine: '2020 Soave Classico Superiore'
+            },
+            {
+                tag: 'Intermezzo • Course 4',
+                title: 'Limoncello & Rose Water Granita',
+                sub: 'Granita al Limone e Rosa',
+                desc: 'Palate cleansing sorbet crafted from Amalfi coast lemons infused with organic Kannauj rose petals.',
+                wine: 'Non-alcoholic Botanical Spritz'
+            },
+            {
+                tag: 'Secondi • Course 5',
+                title: 'Butter Chicken Lasagna Signature',
+                sub: 'Lasagna al Ragù di Pollo al Burro',
+                desc: 'Hand-rolled spinach pasta sheets with rich butter chicken morsels and smoked buffalo mozzarella baked in our wood oven.',
+                wine: '2018 Barolo DOCG Vigneto Cannubi'
+            },
+            {
+                tag: 'Pre-Dolce • Course 6',
+                title: 'Mascarpone Rabri Cannoli Shells',
+                sub: 'Cannoli al Rabri e Cardamomo',
+                desc: 'Miniature crisp shells filled with reduced condensed milk (Rabri) folded into mascarpone and pistachios.',
+                wine: '2021 Moscato d’Asti'
+            },
+            {
+                tag: 'Dolci Finale • Course 7',
+                title: 'Deconstructed Mango Kulfi Tiramisu',
+                sub: 'Tiramisù al Mango Alphonso',
+                desc: 'Espresso soaked ladyfingers layered with whipped mascarpone cheese and Alphonso mango kulfi reduction.',
+                wine: 'Aged Marsala Superiore Reserve'
+            }
+        ];
 
-        // UI Initialization
+        let currentCategory = 'all';
+        let currentSearchQuery = '';
+        let activeDietaryFilters = new Set();
+        let preorderCart = [];
+        let currentCourseIdx = 0;
+        let heroSlideIdx = 0;
+
         document.addEventListener('DOMContentLoaded', () => {
-            renderCategories();
-            renderDietaryFilters();
             renderMenu();
+            initCourseSection();
+            initHeroCarousel();
+            setMinDateReservation();
+
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', () => {
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            const openPreorderBtn = document.getElementById('open-preorder-btn');
+            if (openPreorderBtn) openPreorderBtn.addEventListener('click', togglePreorderDrawer);
+
+            const mobilePreorderIcon = document.getElementById('mobile-preorder-icon');
+            if (mobilePreorderIcon) mobilePreorderIcon.addEventListener('click', togglePreorderDrawer);
+
+            const searchInput = document.getElementById('menu-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    currentSearchQuery = e.target.value.toLowerCase().trim();
+                    renderMenu();
+                });
+            }
         });
 
-
-        // Category Rendering
-        function renderCategories() {
-            const container = document.getElementById('categoryContainer');
-            container.innerHTML = categories.map(cat => `
-                <button 
-                    onclick="setCategory('${cat.id}')"
-                    class="px-5 py-2 text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all rounded-sm border ${
-                        activeCategory === cat.id 
-                            ? 'bg-emeraldLeaf text-parchment border-emeraldLeaf shadow-sm' 
-                            : 'border-agedGold/30 text-charcoal/80 hover:border-agedGold'
-                    }"
-                >
-                    ${cat.label}
-                </button>
-            `).join('');
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
         }
 
-        // Dietary Filters Rendering
-        function renderDietaryFilters() {
-            const container = document.getElementById('dietaryFilters');
-            container.innerHTML = dietaryTags.map(tag => {
-                const isActive = activeTags.includes(tag);
-                return `
-                    <button 
-                        onclick="toggleDietaryTag('${tag}')"
-                        class="px-3 py-1 text-[11px] font-semibold tracking-wide rounded-sm border transition-all ${
-                            isActive 
-                                ? 'bg-terracotta text-white border-terracotta' 
-                                : 'bg-parchment border-agedGold/30 text-charcoal/70 hover:border-terracotta'
-                        }"
-                    >
-                        ${isActive ? '✓ ' : ''}${tag}
-                    </button>
-                `;
-            }).join('');
-        }
-
-        // Menu Card Rendering
         function renderMenu() {
-            const grid = document.getElementById('menuGrid');
-            const filtered = menuItems.filter(item => {
-                const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
-                const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                      item.subTitle.toLowerCase().includes(searchQuery.toLowerCase());
-                const matchesTags = activeTags.length === 0 || activeTags.every(tag => item.tags.includes(tag));
-                
-                return matchesCategory && matchesSearch && matchesTags;
+            const container = document.getElementById('menu-grid');
+            const noResults = document.getElementById('no-results');
+            if (!container) return;
+
+            const filtered = MENU_ITEMS.filter(item => {
+                const matchesCategory = (currentCategory === 'all') || (item.category === currentCategory);
+
+                const matchesSearch = !currentSearchQuery || 
+                    item.title.toLowerCase().includes(currentSearchQuery) ||
+                    item.pairingName.toLowerCase().includes(currentSearchQuery) ||
+                    item.description.toLowerCase().includes(currentSearchQuery);
+
+                let matchesDietary = true;
+                if (activeDietaryFilters.size > 0) {
+                    activeDietaryFilters.forEach(filter => {
+                        if (!item.tags.includes(filter)) {
+                            matchesDietary = false;
+                        }
+                    });
+                }
+
+                return matchesCategory && matchesSearch && matchesDietary;
             });
 
             if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-12 border border-dashed border-agedGold/30">
-                        <p class="font-serif text-2xl text-emeraldLeaf italic">No culinary creations match your query.</p>
-                        <button onclick="resetFilters()" class="mt-4 text-xs font-bold uppercase tracking-wider text-terracotta underline">Clear all filters</button>
-                    </div>
-                `;
+                container.innerHTML = '';
+                if (noResults) noResults.classList.remove('hidden');
                 return;
+            } else {
+                if (noResults) noResults.classList.add('hidden');
             }
 
-            grid.innerHTML = filtered.map(item => `
-                <div class="bg-white p-6 sm:p-8 rounded-sm border border-agedGold/20 gold-border-glow flex flex-col justify-between hover:-translate-y-1 transition-all duration-300">
-                    <div class="space-y-3">
-                        <div class="flex items-start justify-between gap-4">
-                            <div>
-                                <h3 class="font-serif text-2xl font-bold text-emeraldLeaf">${item.title}</h3>
-                                <p class="text-xs font-serif italic text-terracotta mt-0.5">${item.subTitle}</p>
+            container.innerHTML = filtered.map(item => `
+                <div class="glass-card rounded-3xl overflow-hidden border border-gold/30 shadow-luxury hover:border-gold transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-52 overflow-hidden">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 flex flex-wrap gap-1">
+                                <span class="bg-emeraldRich/90 backdrop-blur-md text-gold text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-gold/30">
+                                    ${item.category}
+                                </span>
                             </div>
-                            <span class="font-serif text-xl font-bold text-agedGold whitespace-nowrap">${item.price}</span>
+
+                            <span class="absolute bottom-3 left-3 text-xs font-medium text-parchment/90 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+                                ${item.spice}
+                            </span>
                         </div>
-                        <p class="text-xs text-charcoal/70 leading-relaxed pt-2 border-t border-agedGold/10">${item.description}</p>
+
+                        <div class="p-6 space-y-3">
+                            <div>
+                                <h3 class="font-playfair text-xl font-bold text-emeraldRich group-hover:text-terracotta transition-colors">
+                                    ${item.title}
+                                </h3>
+                                <p class="text-xs font-cormorant italic text-gold font-semibold mt-0.5">
+                                    ${item.pairingName}
+                                </p>
+                            </div>
+
+                            <p class="text-xs text-charcoal-muted leading-relaxed line-clamp-3">
+                                ${item.description}
+                            </p>
+
+                            <div class="flex flex-wrap gap-1 pt-1">
+                                ${item.tags.map(tag => getDietaryBadgeHtml(tag)).join('')}
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-parchment">
-                        ${item.tags.map(t => `<span class="bg-emeraldLeaf/10 text-emeraldLeaf text-[10px] font-bold px-2 py-0.5 rounded-sm">${t}</span>`).join('')}
+
+                    <div class="p-6 pt-0 border-t border-gold/10 flex items-center justify-between mt-4">
+                        <span class="font-playfair text-2xl font-bold text-emeraldRich">$${item.price}</span>
+                        
+                        <div class="flex space-x-2">
+                            <button onclick="openDishModal('${item.id}')" class="p-2.5 rounded-full border border-gold/40 text-emeraldRich hover:bg-gold/20 transition-colors text-xs" title="View Pairing Notes">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="addToPreorder('${item.id}')" class="bg-terracotta hover:bg-terracotta-hover text-white text-xs font-semibold px-4 py-2.5 rounded-full transition-all shadow hover:shadow-md flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>Add</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Event Handlers & State Updates
-        function setCategory(id) {
-            activeCategory = id;
-            renderCategories();
-            renderMenu();
-        }
-
-        function toggleDietaryTag(tag) {
-            if (activeTags.includes(tag)) {
-                activeTags = activeTags.filter(t => t !== tag);
-            } else {
-                activeTags.push(tag);
+        function getDietaryBadgeHtml(tag) {
+            switch(tag) {
+                case 'vegan': return '<span class="text-[9px] bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-medium">Vegan</span>';
+                case 'jain': return '<span class="text-[9px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-medium">Jain</span>';
+                case 'gf': return '<span class="text-[9px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-medium">Gluten-Free</span>';
+                case 'nf': return '<span class="text-[9px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full font-medium">Nut-Free</span>';
+                default: return '';
             }
-            renderDietaryFilters();
+        }
+
+        function setCategory(category, element) {
+            currentCategory = category;
+            
+            const buttons = document.querySelectorAll('.cat-tab');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-emeraldRich', 'text-gold', 'border-gold', 'shadow-md', 'active');
+                btn.classList.add('bg-parchment-dark', 'text-charcoal');
+            });
+
+            if (element) {
+                element.classList.remove('bg-parchment-dark', 'text-charcoal');
+                element.classList.add('bg-emeraldRich', 'text-gold', 'border-gold', 'shadow-md', 'active');
+            }
+
             renderMenu();
         }
 
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            searchQuery = e.target.value;
+        function toggleDietaryFilter(filterKey) {
+            const btn = document.getElementById(`filter-${filterKey}`);
+            if (activeDietaryFilters.has(filterKey)) {
+                activeDietaryFilters.delete(filterKey);
+                if (btn) {
+                    btn.classList.remove('bg-emeraldRich', 'text-gold', 'border-emeraldRich');
+                    btn.classList.add('bg-parchment');
+                }
+            } else {
+                activeDietaryFilters.add(filterKey);
+                if (btn) {
+                    btn.classList.add('bg-emeraldRich', 'text-gold', 'border-emeraldRich');
+                    btn.classList.remove('bg-parchment');
+                }
+            }
             renderMenu();
-        });
+        }
 
         function resetFilters() {
-            activeCategory = 'all';
-            activeTags = [];
-            searchQuery = '';
-            document.getElementById('searchInput').value = '';
-            renderCategories();
-            renderDietaryFilters();
+            currentCategory = 'all';
+            currentSearchQuery = '';
+            activeDietaryFilters.clear();
+            const searchEl = document.getElementById('menu-search');
+            if (searchEl) searchEl.value = '';
+
+            document.querySelectorAll('.diet-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-emeraldRich', 'text-gold', 'border-emeraldRich');
+                btn.classList.add('bg-parchment');
+            });
+
+            const tabs = document.querySelectorAll('.cat-tab');
+            tabs.forEach((tab, idx) => {
+                if (idx === 0) {
+                    tab.classList.add('bg-emeraldRich', 'text-gold', 'border-gold', 'shadow-md', 'active');
+                    tab.classList.remove('bg-parchment-dark', 'text-charcoal');
+                } else {
+                    tab.classList.remove('bg-emeraldRich', 'text-gold', 'border-gold', 'shadow-md', 'active');
+                    tab.classList.add('bg-parchment-dark', 'text-charcoal');
+                }
+            });
+
             renderMenu();
+            showToast('Filters reset to default view.');
         }
 
-        // Modal Controls
-        function openModal(id) {
-            document.getElementById(id).classList.remove('hidden');
+        function showSynergy(type, element) {
+            const synTitle = document.getElementById('syn-title');
+            const synDesc = document.getElementById('syn-desc');
+            const buttons = document.querySelectorAll('.synergy-btn');
+
+            buttons.forEach(b => b.classList.remove('bg-emeraldRich', 'text-gold', 'border-gold'));
+            if (element) {
+                element.classList.add('bg-emeraldRich', 'text-gold', 'border-gold');
+            }
+
+            switch(type) {
+                case 'risotto':
+                    if (synTitle) synTitle.innerText = "Carnaroli Risotto";
+                    if (synDesc) synDesc.innerText = "Infused with 24-hr Truffled Dal Makhani stock, tempered with royal black cumin & brown butter ghee.";
+                    break;
+                case 'ravioli':
+                    if (synTitle) synTitle.innerText = "Handmade Egg Ravioli";
+                    if (synDesc) synDesc.innerText = "Stuffed with 12-hour Sikandari Raan lamb, nutmeg, and drizzled with clove-infused demiglace.";
+                    break;
+                case 'tiramisu':
+                    if (synTitle) synTitle.innerText = "Mascarpone Tiramisu";
+                    if (synDesc) synDesc.innerText = "Reimagined with soaked Savoiardi ladyfingers and Alphonso mango kulfi churned with green cardamom.";
+                    break;
+                case 'neapolitan':
+                    if (synTitle) synTitle.innerText = "Sourdough Crust";
+                    if (synDesc) synDesc.innerText = "Baked in 850°F Vesuvian stone oven, brushed with garlic-fenugreek butter and topped with charred paneer & burrata.";
+                    break;
+            }
         }
 
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
+        function addToPreorder(id) {
+            const item = MENU_ITEMS.find(i => i.id === id);
+            if (!item) return;
+
+            const existing = preorderCart.find(i => i.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                preorderCart.push({ ...item, qty: 1 });
+            }
+
+            updateCartUI();
+            showToast(`Added ${item.title} to your table selection.`);
         }
 
-        function handleReservationSubmit(e) {
+        function updateCartQty(id, delta) {
+            const item = preorderCart.find(i => i.id === id);
+            if (!item) return;
+
+            item.qty += delta;
+            if (item.qty <= 0) {
+                preorderCart = preorderCart.filter(i => i.id !== id);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalCount = preorderCart.reduce((sum, i) => sum + i.qty, 0);
+            const countEl = document.getElementById('preorder-count');
+            const mobCountEl = document.getElementById('mobile-preorder-count');
+            if (countEl) countEl.innerText = totalCount;
+            if (mobCountEl) mobCountEl.innerText = totalCount;
+
+            const listContainer = document.getElementById('preorder-items-list');
+            const totalSpan = document.getElementById('preorder-total');
+
+            if (!listContainer || !totalSpan) return;
+
+            if (preorderCart.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i class="fa-solid fa-utensils text-3xl text-gold/50"></i>
+                        <p class="text-sm font-medium text-emeraldRich">Your selection is currently empty.</p>
+                        <p class="text-xs text-charcoal-muted">Explore the menu and add dishes to sync with your dining table.</p>
+                    </div>
+                `;
+                totalSpan.innerText = '$0';
+                return;
+            }
+
+            let total = 0;
+            listContainer.innerHTML = preorderCart.map(i => {
+                const subtotal = i.price * i.qty;
+                total += subtotal;
+                return `
+                    <div class="flex items-center justify-between p-3 bg-parchment-dark rounded-xl border border-gold/20">
+                        <div class="flex items-center space-x-3 min-w-0">
+                            <img src="${i.image}" class="w-12 h-12 rounded-lg object-cover">
+                            <div class="truncate">
+                                <h4 class="font-playfair font-bold text-sm text-emeraldRich truncate">${i.title}</h4>
+                                <span class="text-xs text-terracotta font-semibold">$${i.price} each</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <button onclick="updateCartQty('${i.id}', -1)" class="w-6 h-6 rounded-full bg-parchment border border-gold/30 flex items-center justify-center text-xs text-emeraldRich font-bold hover:bg-gold/20">-</button>
+                            <span class="text-xs font-bold w-4 text-center">${i.qty}</span>
+                            <button onclick="updateCartQty('${i.id}', 1)" class="w-6 h-6 rounded-full bg-parchment border border-gold/30 flex items-center justify-center text-xs text-emeraldRich font-bold hover:bg-gold/20">+</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalSpan.innerText = `$${total}`;
+        }
+
+        function togglePreorderDrawer() {
+            const drawer = document.getElementById('preorder-drawer');
+            if (!drawer) return;
+            if (drawer.classList.contains('opacity-0')) {
+                drawer.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                drawer.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function checkoutPreorder() {
+            if (preorderCart.length === 0) {
+                showToast('Please add items to your table selection first!');
+                return;
+            }
+            togglePreorderDrawer();
+            showToast('Table selections confirmed! Server will be notified at check-in.');
+        }
+
+        function openDishModal(id) {
+            const item = MENU_ITEMS.find(i => i.id === id);
+            if (!item) return;
+
+            document.getElementById('modal-dish-img').src = item.image;
+            document.getElementById('modal-dish-cat').innerText = item.category;
+            document.getElementById('modal-dish-spice').innerText = item.spice;
+            document.getElementById('modal-dish-title').innerText = item.title;
+            document.getElementById('modal-dish-sub').innerText = item.pairingName;
+            document.getElementById('modal-dish-desc').innerText = item.description + ' ' + (item.pairingNote ? item.pairingNote : '');
+            document.getElementById('modal-dish-price').innerText = `$${item.price}`;
+
+            const badgesContainer = document.getElementById('modal-dish-badges');
+            badgesContainer.innerHTML = item.tags.map(t => getDietaryBadgeHtml(t)).join('');
+
+            const addBtn = document.getElementById('modal-add-btn');
+            addBtn.onclick = () => {
+                addToPreorder(item.id);
+                closeDishModal();
+            };
+
+            document.getElementById('dish-modal').classList.remove('hidden');
+        }
+
+        function closeDishModal() {
+            const modal = document.getElementById('dish-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function openSocialsModal() {
+            const modal = document.getElementById('socialsModal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeSocialsModal() {
+            const modal = document.getElementById('socialsModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function initCourseSection() {
+            const dotsContainer = document.getElementById('course-dots');
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = TASTING_COURSES.map((_, idx) => `
+                <button onclick="setCourse(${idx})" class="course-dot-btn w-2 h-2 rounded-full ${idx === 0 ? 'bg-gold w-6' : 'bg-parchment/30'} transition-all duration-300"></button>
+            `).join('');
+
+            updateCourseDisplay();
+        }
+
+        function setCourse(idx) {
+            currentCourseIdx = idx;
+            updateCourseDisplay();
+        }
+
+        function nextCourse() {
+            currentCourseIdx = (currentCourseIdx + 1) % TASTING_COURSES.length;
+            updateCourseDisplay();
+        }
+
+        function prevCourse() {
+            currentCourseIdx = (currentCourseIdx - 1 + TASTING_COURSES.length) % TASTING_COURSES.length;
+            updateCourseDisplay();
+        }
+
+        function updateCourseDisplay() {
+            const course = TASTING_COURSES[currentCourseIdx];
+            const labelEl = document.getElementById('course-step-label');
+            const tagEl = document.getElementById('course-tag');
+            const titleEl = document.getElementById('course-title');
+            const subEl = document.getElementById('course-sub');
+            const descEl = document.getElementById('course-desc');
+            const wineEl = document.getElementById('course-wine');
+
+            if (labelEl) labelEl.innerText = `Course ${currentCourseIdx + 1} of 7`;
+            if (tagEl) tagEl.innerText = course.tag;
+            if (titleEl) titleEl.innerText = course.title;
+            if (subEl) subEl.innerText = course.sub;
+            if (descEl) descEl.innerText = course.desc;
+            if (wineEl) wineEl.innerText = course.wine;
+
+            const dots = document.querySelectorAll('.course-dot-btn');
+            dots.forEach((dot, idx) => {
+                if (idx === currentCourseIdx) {
+                    dot.className = "course-dot-btn w-6 h-2 rounded-full bg-gold transition-all duration-300";
+                } else {
+                    dot.className = "course-dot-btn w-2 h-2 rounded-full bg-parchment/30 transition-all duration-300";
+                }
+            });
+        }
+
+        function initHeroCarousel() {
+            setInterval(() => {
+                heroSlideIdx = (heroSlideIdx + 1) % 3;
+                setHeroSlide(heroSlideIdx);
+            }, 6000);
+        }
+
+        function setHeroSlide(idx) {
+            heroSlideIdx = idx;
+            const bgs = [
+                document.getElementById('hero-bg-1'),
+                document.getElementById('hero-bg-2'),
+                document.getElementById('hero-bg-3')
+            ];
+
+            bgs.forEach((bg, i) => {
+                if (bg) {
+                    if (i === idx) {
+                        bg.classList.remove('opacity-0');
+                        bg.classList.add('opacity-100');
+                    } else {
+                        bg.classList.remove('opacity-100');
+                        bg.classList.add('opacity-0');
+                    }
+                }
+            });
+
+            const dots = document.querySelectorAll('.hero-dot');
+            dots.forEach((dot, i) => {
+                if (i === idx) {
+                    dot.className = "hero-dot w-8 h-1.5 rounded-full bg-gold transition-all duration-300";
+                } else {
+                    dot.className = "hero-dot w-2 h-1.5 rounded-full bg-parchment/40 hover:bg-gold transition-all duration-300";
+                }
+            });
+
+            const cardImg = document.getElementById('hero-dish-img');
+            const cardTitle = document.getElementById('hero-dish-title');
+            const cardSub = document.getElementById('hero-dish-sub');
+            const cardPrice = document.getElementById('hero-dish-price');
+
+            if (idx === 0) {
+                if (cardImg) cardImg.src = "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=300&q=80";
+                if (cardTitle) cardTitle.innerText = "Butter Chicken Lasagna Signature";
+                if (cardSub) cardSub.innerText = "Lasagna al Ragù di Pollo al Burro • Tuscan Wood Oven";
+                if (cardPrice) cardPrice.innerText = "$38";
+            } else if (idx === 1) {
+                if (cardImg) cardImg.src = "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=300&q=80";
+                if (cardTitle) cardTitle.innerText = "Truffle Dal Makhani Risotto";
+                if (cardSub) cardSub.innerText = "Risotto al Dal Makhani • Aged Carnaroli & Winter Truffle";
+                if (cardPrice) cardPrice.innerText = "$34";
+            } else {
+                if (cardImg) cardImg.src = "https://images.unsplash.com/photo-1592417817098-8f3d6eb231fc?auto=format&fit=crop&w=300&q=80";
+                if (cardTitle) cardTitle.innerText = "Tandoori Burrata & Heirloom Chaat";
+                if (cardSub) cardSub.innerText = "Burrata Affumicata • Cinnamon Wood Charred";
+                if (cardPrice) cardPrice.innerText = "$26";
+            }
+        }
+
+        function setMinDateReservation() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('res-date');
+            if (dateInput) {
+                dateInput.setAttribute('min', today);
+                dateInput.value = today;
+            }
+        }
+
+        function handleReservation(e) {
             e.preventDefault();
-            alert('Your reservation request has been received. Our concierge will reach out via phone to confirm your table.');
-            closeModal('reservationModal');
-            e.target.reset();
+            const name = document.getElementById('res-name').value;
+            const date = document.getElementById('res-date').value;
+            const time = document.getElementById('res-time').value;
+            const guests = document.getElementById('res-guests').value;
+            const area = document.getElementById('res-area').value;
+
+            showToast(`Reservation Confirmed for ${name}! (${guests} Guests on ${date} at ${time} in ${area})`);
+            document.getElementById('reservation-form').reset();
+            setMinDateReservation();
+        }
+
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletter-email').value;
+            showToast(`Thank you! Private Gazette invite sent to ${email}`);
+            document.getElementById('newsletter-email').value = '';
+        }
+
+        function preselectTasting() {
+            const areaSelect = document.getElementById('res-area');
+            if (areaSelect) {
+                areaSelect.value = "Chef's Tandoor Counter";
+            }
+        }
+
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = 'glass-dark text-gold px-5 py-3.5 rounded-2xl text-xs font-semibold shadow-luxury flex items-center space-x-3 border border-gold transform transition-all duration-300 translate-y-4 opacity-0 pointer-events-auto';
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+                <span>${msg}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 4500);
         }
     </script>
     <script src="js/native-bridge.js"></script>
-
 </body>
 </html>

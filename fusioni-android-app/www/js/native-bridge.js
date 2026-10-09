@@ -21,24 +21,30 @@
             App.addListener('backButton', ({ canGoBack }) => {
                 // 1. Check if any modal or drawer is open
                 const socialsModal = document.getElementById('socialsModal');
-                const resModal = document.getElementById('reservationModal');
-                const cartDrawer = document.getElementById('cartDrawer');
+                const dishModal = document.getElementById('dish-modal');
+                const preorderDrawer = document.getElementById('preorder-drawer');
+                const mobileMenu = document.getElementById('mobile-menu');
 
                 if (socialsModal && !socialsModal.classList.contains('hidden')) {
                     socialsModal.classList.add('hidden');
                     return;
                 }
 
-                if (resModal && !resModal.classList.contains('hidden')) {
-                    resModal.classList.add('hidden');
+                if (dishModal && !dishModal.classList.contains('hidden')) {
+                    dishModal.classList.add('hidden');
                     return;
                 }
-                if (cartDrawer && !cartDrawer.classList.contains('translate-x-full')) {
-                    cartDrawer.classList.add('translate-x-full');
-                    const overlay = document.getElementById('cartDrawerOverlay');
-                    if (overlay) overlay.classList.add('hidden');
+
+                if (preorderDrawer && !preorderDrawer.classList.contains('opacity-0')) {
+                    preorderDrawer.classList.add('opacity-0', 'pointer-events-none');
                     return;
                 }
+
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    return;
+                }
+
 
                 // 2. Navigate web history if available
                 if (canGoBack && window.location.hash !== '') {
